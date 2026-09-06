@@ -1,0 +1,236 @@
+{
+  "appName": {
+    "message": "jp-dummy-fill",
+    "description": "Extension name. Shown in the Chrome Web Store and on chrome://extensions."
+  },
+  "appDesc": {
+    "message": "Fill Japanese forms with test data that passes validation. Kana, split postal codes, prefecture selects, era dates.",
+    "description": "Shown in the Chrome Web Store and on chrome://extensions."
+  },
+  "menuFill": {
+    "message": "Fill this page",
+    "description": "Right-click menu entry. Fills the empty fields with the person this page got when it was opened; a new person every time the page is opened."
+  },
+  "menuFillOne": {
+    "message": "Fill this field with…",
+    "description": "Right-click menu entry that opens the in-page palette of field kinds next to the field that was right-clicked. The chosen kind overwrites the field."
+  },
+  "menuAddress": {
+    "message": "Change the address to remote / island…",
+    "description": "Context menu: opens the palette of remote regions and islands"
+  },
+  "group_name": {
+    "message": "Name",
+    "description": "Submenu heading."
+  },
+  "group_address": {
+    "message": "Address",
+    "description": "Submenu heading."
+  },
+  "group_contact": {
+    "message": "Contact",
+    "description": "Submenu heading."
+  },
+  "group_birth": {
+    "message": "Birth date",
+    "description": "Submenu heading."
+  },
+  "group_company": {
+    "message": "Company",
+    "description": "Submenu heading."
+  },
+  "group_other": {
+    "message": "Other",
+    "description": "Submenu heading."
+  },
+  "kind_name_full": {
+    "message": "Full name"
+  },
+  "kind_name_family": {
+    "message": "Family name"
+  },
+  "kind_name_given": {
+    "message": "Given name"
+  },
+  "kind_kana_full": {
+    "message": "Kana (full name)"
+  },
+  "kind_kana_family": {
+    "message": "Kana (family name)"
+  },
+  "kind_kana_given": {
+    "message": "Kana (given name)"
+  },
+  "kind_postal": {
+    "message": "Postal code"
+  },
+  "kind_postal_1": {
+    "message": "Postal code, first 3 digits"
+  },
+  "kind_postal_2": {
+    "message": "Postal code, last 4 digits"
+  },
+  "kind_prefecture": {
+    "message": "Prefecture"
+  },
+  "kind_city": {
+    "message": "City / ward"
+  },
+  "kind_town": {
+    "message": "Town and block"
+  },
+  "kind_block": {
+    "message": "Block only"
+  },
+  "kind_building": {
+    "message": "Building"
+  },
+  "kind_room": {
+    "message": "Room number"
+  },
+  "kind_address_full": {
+    "message": "Whole address"
+  },
+  "kind_address_kana": {
+    "message": "Address kana"
+  },
+  "kind_country": {
+    "message": "Country"
+  },
+  "kind_tel": {
+    "message": "Phone"
+  },
+  "kind_tel_1": {
+    "message": "Phone, part 1 (area code)"
+  },
+  "kind_tel_2": {
+    "message": "Phone, part 2"
+  },
+  "kind_tel_3": {
+    "message": "Phone, part 3"
+  },
+  "kind_fax": {
+    "message": "Fax"
+  },
+  "kind_email": {
+    "message": "Email"
+  },
+  "kind_password": {
+    "message": "Password"
+  },
+  "kind_username": {
+    "message": "Username"
+  },
+  "kind_url": {
+    "message": "URL"
+  },
+  "kind_birth": {
+    "message": "Date of birth"
+  },
+  "kind_birth_y": {
+    "message": "Year"
+  },
+  "kind_birth_m": {
+    "message": "Month"
+  },
+  "kind_birth_d": {
+    "message": "Day"
+  },
+  "kind_era": {
+    "message": "Era"
+  },
+  "kind_age": {
+    "message": "Age"
+  },
+  "kind_gender": {
+    "message": "Gender"
+  },
+  "kind_company": {
+    "message": "Company name"
+  },
+  "kind_company_kana": {
+    "message": "Company kana"
+  },
+  "kind_department": {
+    "message": "Department"
+  },
+  "kind_job_title": {
+    "message": "Job title"
+  },
+  "kind_message": {
+    "message": "Free text"
+  },
+  "kind_text": {
+    "message": "Short text"
+  },
+  "kind_number": {
+    "message": "Number"
+  },
+  "kind_agree": {
+    "message": "Tick the box"
+  },
+  "kind_select": {
+    "message": "First option"
+  },
+  "palettePlaceholder": {
+    "message": "Type to search: city, kana, phone…",
+    "description": "Placeholder of the palette's search box."
+  },
+  "paletteGuess": {
+    "message": "Detected as: $KIND$",
+    "description": "Shown in the palette. What the rules would have filled this field with.",
+    "placeholders": {
+      "kind": {
+        "content": "$1",
+        "example": "Short text"
+      }
+    }
+  },
+  "paletteRecall": {
+    "message": "Recall a person by number…",
+    "description": "Last row of the palette. Switches the page to the person with the given number and fills the empty fields."
+  },
+  "paletteRecallPlaceholder": {
+    "message": "Number (the digits at the end of the email address)",
+    "description": "Placeholder of the palette's search box once 'Recall a person by number…' was chosen."
+  },
+  "cmdFill": {
+    "message": "Fill this page",
+    "description": "Shown on chrome://extensions/shortcuts, next to the key assignment."
+  },
+  "cmdPick": {
+    "message": "Fill the focused field with… (opens the palette)",
+    "description": "Shown on chrome://extensions/shortcuts, next to the key assignment."
+  },
+  "errUnsupported": {
+    "message": "This page cannot be filled",
+    "description": "Tooltip on the toolbar icon after a failure."
+  },
+  "errFileAccess": {
+    "message": "Turn on \"Allow access to file URLs\" on the extension's details page"
+  },
+  "errNoTarget": {
+    "message": "Right-click a form field, then choose what to fill it with",
+    "description": "Tooltip when 'Fill this field with…' was chosen but no field was under the pointer."
+  },
+  "placeHome": {
+    "message": "Back to the person's own address",
+    "description": "Place palette: first row, returns to the person's own address"
+  },
+  "placeGroupRegion": {
+    "message": "Regions with their own shipping rate",
+    "description": "Place palette heading: Hokkaido, Kyushu, Okinawa main island"
+  },
+  "placeGroupIsland": {
+    "message": "Outlying islands",
+    "description": "Place palette heading: outlying islands"
+  },
+  "placePlaceholder": {
+    "message": "Type a place name",
+    "description": "Place palette: placeholder of the filter box"
+  },
+  "cmdPlace": {
+    "message": "Change the address to remote / island…",
+    "description": "Shortcut description shown in chrome://extensions/shortcuts"
+  }
+}

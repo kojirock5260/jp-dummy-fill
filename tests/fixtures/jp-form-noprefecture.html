@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>都道府県の欄が無いフォーム</title>
+<style>
+  body { font: 14px sans-serif; max-width: 640px; margin: 2em auto; }
+  label { display: block; margin: .8em 0 .2em; }
+  input { padding: .3em; }
+  pre { background: #f4f4f4; padding: .8em; white-space: pre-wrap; }
+</style>
+<!--
+  docs/field-rules.md §2.3「address1 + address2（都道府県なし）」。
+  都道府県の select があるページと同じ document に置くと判定が変わるので、別ページにしてある。
+  住所1 には都道府県から番地まで、住所2 には建物が入ること。
+-->
+<form>
+  <label>お名前</label>
+  <input name="name">
+
+  <label>郵便番号</label>
+  <input name="zip">
+
+  <label>住所1</label>
+  <input name="address1" size="50">
+
+  <label>住所2</label>
+  <input name="address2" size="50">
+
+  <p><button type="button" id="show">値を表示</button></p>
+  <pre id="out"></pre>
+</form>
+<script>
+  document.getElementById("show").addEventListener("click", () => {
+    const rows = [...document.querySelectorAll("input")].map((e) => `${e.name} = ${e.value}`);
+    document.getElementById("out").textContent = rows.join("\n");
+  });
+</script>
+</html>

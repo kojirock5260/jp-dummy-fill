@@ -1,0 +1,629 @@
+[
+ {
+  "zip": "060-0003",
+  "kind": "center",
+  "zone": [
+   "hokkaido"
+  ],
+  "areaCode": "011",
+  "note": "道庁"
+ },
+ {
+  "zip": "030-0861",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "017",
+  "note": "県庁"
+ },
+ {
+  "zip": "020-0023",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "019",
+  "note": "県庁"
+ },
+ {
+  "zip": "980-0014",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "022",
+  "note": "県庁"
+ },
+ {
+  "zip": "010-0951",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "018",
+  "note": "県庁"
+ },
+ {
+  "zip": "990-0023",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "023",
+  "note": "県庁"
+ },
+ {
+  "zip": "960-8065",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "024",
+  "note": "県庁"
+ },
+ {
+  "zip": "310-0852",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "029",
+  "note": "県庁"
+ },
+ {
+  "zip": "320-0027",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "028",
+  "note": "県庁"
+ },
+ {
+  "zip": "371-0026",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "027",
+  "note": "県庁"
+ },
+ {
+  "zip": "330-0063",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "048",
+  "note": "県庁"
+ },
+ {
+  "zip": "260-0855",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "043",
+  "note": "県庁"
+ },
+ {
+  "zip": "100-0013",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "03",
+  "note": "官庁街"
+ },
+ {
+  "zip": "231-0021",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "045",
+  "note": "県庁"
+ },
+ {
+  "zip": "950-0965",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "025",
+  "note": "県庁"
+ },
+ {
+  "zip": "930-0006",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "076",
+  "note": "県庁"
+ },
+ {
+  "zip": "920-8203",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "076",
+  "note": "県庁"
+ },
+ {
+  "zip": "910-0005",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0776",
+  "note": "県庁"
+ },
+ {
+  "zip": "400-0031",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "055",
+  "note": "県庁"
+ },
+ {
+  "zip": "380-0837",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "026",
+  "note": "県庁（正式は大字南長野字幅下）"
+ },
+ {
+  "zip": "500-8384",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "058",
+  "note": "県庁"
+ },
+ {
+  "zip": "420-0853",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "054",
+  "note": "県庁"
+ },
+ {
+  "zip": "460-0001",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "052",
+  "note": "県庁"
+ },
+ {
+  "zip": "514-0006",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "059",
+  "note": "県庁"
+ },
+ {
+  "zip": "520-0044",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "077",
+  "note": "県庁"
+ },
+ {
+  "zip": "602-8041",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "075",
+  "note": "府庁（通り名表記は持たない）"
+ },
+ {
+  "zip": "540-0008",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "06",
+  "note": "府庁"
+ },
+ {
+  "zip": "650-0011",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "078",
+  "note": "県庁"
+ },
+ {
+  "zip": "630-8213",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0742",
+  "note": "県庁"
+ },
+ {
+  "zip": "640-8269",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "073",
+  "note": "県庁"
+ },
+ {
+  "zip": "680-0011",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0857",
+  "note": "県庁"
+ },
+ {
+  "zip": "690-0887",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0852",
+  "note": "県庁"
+ },
+ {
+  "zip": "700-0824",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "086",
+  "note": "県庁"
+ },
+ {
+  "zip": "730-0011",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "082",
+  "note": "県庁"
+ },
+ {
+  "zip": "753-0071",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "083",
+  "note": "県庁"
+ },
+ {
+  "zip": "770-0941",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "088",
+  "note": "県庁"
+ },
+ {
+  "zip": "760-0017",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "087",
+  "note": "県庁"
+ },
+ {
+  "zip": "790-0001",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "089",
+  "note": "県庁"
+ },
+ {
+  "zip": "780-0850",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "088",
+  "note": "県庁"
+ },
+ {
+  "zip": "812-0045",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "092",
+  "note": "県庁"
+ },
+ {
+  "zip": "840-0041",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0952",
+  "note": "県庁"
+ },
+ {
+  "zip": "850-0058",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "095",
+  "note": "県庁"
+ },
+ {
+  "zip": "862-0950",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "096",
+  "note": "県庁"
+ },
+ {
+  "zip": "870-0022",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "097",
+  "note": "県庁"
+ },
+ {
+  "zip": "880-0805",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0985",
+  "note": "県庁"
+ },
+ {
+  "zip": "890-0064",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "099",
+  "note": "県庁"
+ },
+ {
+  "zip": "900-0021",
+  "kind": "center",
+  "zone": [
+   "okinawa"
+  ],
+  "areaCode": "098",
+  "note": "県庁"
+ },
+ {
+  "zip": "097-1201",
+  "kind": "island",
+  "zone": [
+   "hokkaido",
+   "island"
+  ],
+  "areaCode": "0163",
+  "note": "役場",
+  "name": "礼文島",
+  "nameKana": "レブントウ"
+ },
+ {
+  "zip": "043-1401",
+  "kind": "island",
+  "zone": [
+   "hokkaido",
+   "island"
+  ],
+  "areaCode": "01397",
+  "note": "役場",
+  "name": "奥尻島",
+  "nameKana": "オクシリトウ"
+ },
+ {
+  "zip": "998-0281",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0234",
+  "note": "市の一部だけが離島。市区町村名では判定できない例",
+  "name": "飛島",
+  "nameKana": "トビシマ"
+ },
+ {
+  "zip": "100-0101",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "04992",
+  "note": "町役場",
+  "name": "伊豆大島",
+  "nameKana": "イズオオシマ"
+ },
+ {
+  "zip": "100-1401",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "04996",
+  "note": "町役場",
+  "name": "八丈島",
+  "nameKana": "ハチジョウジマ"
+ },
+ {
+  "zip": "100-2101",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "04998",
+  "note": "村役場。船が週 1 便",
+  "name": "父島",
+  "nameKana": "チチジマ"
+ },
+ {
+  "zip": "952-1209",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0259",
+  "note": "市役所",
+  "name": "佐渡島",
+  "nameKana": "サドガシマ"
+ },
+ {
+  "zip": "685-0015",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "08512",
+  "note": "町役場",
+  "name": "隠岐",
+  "nameKana": "オキ"
+ },
+ {
+  "zip": "761-4301",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0879",
+  "note": "町役場",
+  "name": "小豆島",
+  "nameKana": "ショウドシマ"
+ },
+ {
+  "zip": "817-0021",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0920",
+  "note": "市役所",
+  "name": "対馬",
+  "nameKana": "ツシマ"
+ },
+ {
+  "zip": "853-0001",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0959",
+  "note": "市役所",
+  "name": "福江島",
+  "nameKana": "フクエジマ"
+ },
+ {
+  "zip": "891-4205",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0997",
+  "note": "町役場",
+  "name": "屋久島",
+  "nameKana": "ヤクシマ"
+ },
+ {
+  "zip": "894-0025",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0997",
+  "note": "市役所",
+  "name": "奄美大島",
+  "nameKana": "アマミオオシマ"
+ },
+ {
+  "zip": "891-9301",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0997",
+  "note": "町役場",
+  "name": "与論島",
+  "nameKana": "ヨロンジマ"
+ },
+ {
+  "zip": "906-0012",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "0980",
+  "note": "市役所",
+  "name": "宮古島",
+  "nameKana": "ミヤコジマ"
+ },
+ {
+  "zip": "907-0012",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "0980",
+  "note": "市役所",
+  "name": "石垣島",
+  "nameKana": "イシガキジマ"
+ },
+ {
+  "zip": "907-1801",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "0980",
+  "note": "町役場",
+  "name": "与那国島",
+  "nameKana": "ヨナグニジマ"
+ },
+ {
+  "zip": "901-3805",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "09802",
+  "note": "村役場",
+  "name": "南大東島",
+  "nameKana": "ミナミダイトウジマ"
+ }
+]

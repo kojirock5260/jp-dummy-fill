@@ -1,0 +1,78 @@
+:host {
+  all: initial;
+}
+
+.panel {
+  position: fixed;
+  z-index: 2147483647;
+  width: 280px;
+  max-height: 340px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  color: #14171c;
+  border: 1px solid #c9cdd3;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  font:
+    13px / 1.4 -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Sans",
+    "Noto Sans JP",
+    "Yu Gothic",
+    sans-serif;
+}
+
+.panel input {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 9px 10px;
+  border: 0;
+  border-bottom: 1px solid #e3e6ea;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+
+.guess {
+  padding: 4px 10px;
+  border-bottom: 1px solid #eef0f2;
+  color: #667085;
+  font-size: 11px;
+}
+
+ul {
+  flex: 1;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+li.grp {
+  padding: 6px 10px 2px;
+  color: #8a93a2;
+  font-size: 11px;
+}
+
+li.item {
+  padding: 5px 10px 5px 18px;
+  cursor: pointer;
+}
+
+li.item.on {
+  background: #2563eb;
+  color: #fff;
+}
+
+li.none {
+  padding: 8px 10px;
+  color: #8a93a2;
+}
+
+li[hidden] {
+  display: none;
+}

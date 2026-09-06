@@ -1,0 +1,1084 @@
+[
+ {
+  "zip": "060-0003",
+  "prefCode": 1,
+  "pref": "北海道",
+  "prefKana": "ホッカイドウ",
+  "city": "札幌市中央区",
+  "cityKana": "サッポロシチュウオウク",
+  "town": "北三条西",
+  "townKana": "キタ3ジョウニシ",
+  "kind": "center",
+  "zone": [
+   "hokkaido"
+  ],
+  "areaCode": "011",
+  "note": "道庁"
+ },
+ {
+  "zip": "030-0861",
+  "prefCode": 2,
+  "pref": "青森県",
+  "prefKana": "アオモリケン",
+  "city": "青森市",
+  "cityKana": "アオモリシ",
+  "town": "長島",
+  "townKana": "ナガシマ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "017",
+  "note": "県庁"
+ },
+ {
+  "zip": "020-0023",
+  "prefCode": 3,
+  "pref": "岩手県",
+  "prefKana": "イワテケン",
+  "city": "盛岡市",
+  "cityKana": "モリオカシ",
+  "town": "内丸",
+  "townKana": "ウチマル",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "019",
+  "note": "県庁"
+ },
+ {
+  "zip": "980-0014",
+  "prefCode": 4,
+  "pref": "宮城県",
+  "prefKana": "ミヤギケン",
+  "city": "仙台市青葉区",
+  "cityKana": "センダイシアオバク",
+  "town": "本町",
+  "townKana": "ホンチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "022",
+  "note": "県庁"
+ },
+ {
+  "zip": "010-0951",
+  "prefCode": 5,
+  "pref": "秋田県",
+  "prefKana": "アキタケン",
+  "city": "秋田市",
+  "cityKana": "アキタシ",
+  "town": "山王",
+  "townKana": "サンノウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "018",
+  "note": "県庁"
+ },
+ {
+  "zip": "990-0023",
+  "prefCode": 6,
+  "pref": "山形県",
+  "prefKana": "ヤマガタケン",
+  "city": "山形市",
+  "cityKana": "ヤマガタシ",
+  "town": "松波",
+  "townKana": "マツナミ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "023",
+  "note": "県庁"
+ },
+ {
+  "zip": "960-8065",
+  "prefCode": 7,
+  "pref": "福島県",
+  "prefKana": "フクシマケン",
+  "city": "福島市",
+  "cityKana": "フクシマシ",
+  "town": "杉妻町",
+  "townKana": "スギツマチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "024",
+  "note": "県庁"
+ },
+ {
+  "zip": "310-0852",
+  "prefCode": 8,
+  "pref": "茨城県",
+  "prefKana": "イバラキケン",
+  "city": "水戸市",
+  "cityKana": "ミトシ",
+  "town": "笠原町",
+  "townKana": "カサハラチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "029",
+  "note": "県庁"
+ },
+ {
+  "zip": "320-0027",
+  "prefCode": 9,
+  "pref": "栃木県",
+  "prefKana": "トチギケン",
+  "city": "宇都宮市",
+  "cityKana": "ウツノミヤシ",
+  "town": "塙田",
+  "townKana": "ハナワダ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "028",
+  "note": "県庁"
+ },
+ {
+  "zip": "371-0026",
+  "prefCode": 10,
+  "pref": "群馬県",
+  "prefKana": "グンマケン",
+  "city": "前橋市",
+  "cityKana": "マエバシシ",
+  "town": "大手町",
+  "townKana": "オオテマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "027",
+  "note": "県庁"
+ },
+ {
+  "zip": "330-0063",
+  "prefCode": 11,
+  "pref": "埼玉県",
+  "prefKana": "サイタマケン",
+  "city": "さいたま市浦和区",
+  "cityKana": "サイタマシウラワク",
+  "town": "高砂",
+  "townKana": "タカサゴ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "048",
+  "note": "県庁"
+ },
+ {
+  "zip": "260-0855",
+  "prefCode": 12,
+  "pref": "千葉県",
+  "prefKana": "チバケン",
+  "city": "千葉市中央区",
+  "cityKana": "チバシチュウオウク",
+  "town": "市場町",
+  "townKana": "イチバチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "043",
+  "note": "県庁"
+ },
+ {
+  "zip": "100-0013",
+  "prefCode": 13,
+  "pref": "東京都",
+  "prefKana": "トウキョウト",
+  "city": "千代田区",
+  "cityKana": "チヨダク",
+  "town": "霞が関",
+  "townKana": "カスミガセキ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "03",
+  "note": "官庁街"
+ },
+ {
+  "zip": "231-0021",
+  "prefCode": 14,
+  "pref": "神奈川県",
+  "prefKana": "カナガワケン",
+  "city": "横浜市中区",
+  "cityKana": "ヨコハマシナカク",
+  "town": "日本大通",
+  "townKana": "ニホンオオドオリ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "045",
+  "note": "県庁"
+ },
+ {
+  "zip": "950-0965",
+  "prefCode": 15,
+  "pref": "新潟県",
+  "prefKana": "ニイガタケン",
+  "city": "新潟市中央区",
+  "cityKana": "ニイガタシチュウオウク",
+  "town": "新光町",
+  "townKana": "シンコウチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "025",
+  "note": "県庁"
+ },
+ {
+  "zip": "930-0006",
+  "prefCode": 16,
+  "pref": "富山県",
+  "prefKana": "トヤマケン",
+  "city": "富山市",
+  "cityKana": "トヤマシ",
+  "town": "新総曲輪",
+  "townKana": "シンソウガワ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "076",
+  "note": "県庁"
+ },
+ {
+  "zip": "920-8203",
+  "prefCode": 17,
+  "pref": "石川県",
+  "prefKana": "イシカワケン",
+  "city": "金沢市",
+  "cityKana": "カナザワシ",
+  "town": "鞍月",
+  "townKana": "クラツキ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "076",
+  "note": "県庁"
+ },
+ {
+  "zip": "910-0005",
+  "prefCode": 18,
+  "pref": "福井県",
+  "prefKana": "フクイケン",
+  "city": "福井市",
+  "cityKana": "フクイシ",
+  "town": "大手",
+  "townKana": "オオテ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0776",
+  "note": "県庁"
+ },
+ {
+  "zip": "400-0031",
+  "prefCode": 19,
+  "pref": "山梨県",
+  "prefKana": "ヤマナシケン",
+  "city": "甲府市",
+  "cityKana": "コウフシ",
+  "town": "丸の内",
+  "townKana": "マルノウチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "055",
+  "note": "県庁"
+ },
+ {
+  "zip": "380-0837",
+  "prefCode": 20,
+  "pref": "長野県",
+  "prefKana": "ナガノケン",
+  "city": "長野市",
+  "cityKana": "ナガノシ",
+  "town": "南長野",
+  "townKana": "ミナミナガノ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "026",
+  "note": "県庁（正式は大字南長野字幅下）"
+ },
+ {
+  "zip": "500-8384",
+  "prefCode": 21,
+  "pref": "岐阜県",
+  "prefKana": "ギフケン",
+  "city": "岐阜市",
+  "cityKana": "ギフシ",
+  "town": "薮田南",
+  "townKana": "ヤブタミナミ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "058",
+  "note": "県庁"
+ },
+ {
+  "zip": "420-0853",
+  "prefCode": 22,
+  "pref": "静岡県",
+  "prefKana": "シズオカケン",
+  "city": "静岡市葵区",
+  "cityKana": "シズオカシアオイク",
+  "town": "追手町",
+  "townKana": "オウテマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "054",
+  "note": "県庁"
+ },
+ {
+  "zip": "460-0001",
+  "prefCode": 23,
+  "pref": "愛知県",
+  "prefKana": "アイチケン",
+  "city": "名古屋市中区",
+  "cityKana": "ナゴヤシナカク",
+  "town": "三の丸",
+  "townKana": "サンノマル",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "052",
+  "note": "県庁"
+ },
+ {
+  "zip": "514-0006",
+  "prefCode": 24,
+  "pref": "三重県",
+  "prefKana": "ミエケン",
+  "city": "津市",
+  "cityKana": "ツシ",
+  "town": "広明町",
+  "townKana": "コウメイチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "059",
+  "note": "県庁"
+ },
+ {
+  "zip": "520-0044",
+  "prefCode": 25,
+  "pref": "滋賀県",
+  "prefKana": "シガケン",
+  "city": "大津市",
+  "cityKana": "オオツシ",
+  "town": "京町",
+  "townKana": "キョウマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "077",
+  "note": "県庁"
+ },
+ {
+  "zip": "602-8041",
+  "prefCode": 26,
+  "pref": "京都府",
+  "prefKana": "キョウトフ",
+  "city": "京都市上京区",
+  "cityKana": "キョウトシカミギョウク",
+  "town": "藪之内町",
+  "townKana": "ヤブノウチチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "075",
+  "note": "府庁（通り名表記は持たない）"
+ },
+ {
+  "zip": "540-0008",
+  "prefCode": 27,
+  "pref": "大阪府",
+  "prefKana": "オオサカフ",
+  "city": "大阪市中央区",
+  "cityKana": "オオサカシチュウオウク",
+  "town": "大手前",
+  "townKana": "オオテマエ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "06",
+  "note": "府庁"
+ },
+ {
+  "zip": "650-0011",
+  "prefCode": 28,
+  "pref": "兵庫県",
+  "prefKana": "ヒョウゴケン",
+  "city": "神戸市中央区",
+  "cityKana": "コウベシチュウオウク",
+  "town": "下山手通",
+  "townKana": "シモヤマテドオリ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "078",
+  "note": "県庁"
+ },
+ {
+  "zip": "630-8213",
+  "prefCode": 29,
+  "pref": "奈良県",
+  "prefKana": "ナラケン",
+  "city": "奈良市",
+  "cityKana": "ナラシ",
+  "town": "登大路町",
+  "townKana": "ノボリオオジチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0742",
+  "note": "県庁"
+ },
+ {
+  "zip": "640-8269",
+  "prefCode": 30,
+  "pref": "和歌山県",
+  "prefKana": "ワカヤマケン",
+  "city": "和歌山市",
+  "cityKana": "ワカヤマシ",
+  "town": "小松原通",
+  "townKana": "コマツバラドオリ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "073",
+  "note": "県庁"
+ },
+ {
+  "zip": "680-0011",
+  "prefCode": 31,
+  "pref": "鳥取県",
+  "prefKana": "トットリケン",
+  "city": "鳥取市",
+  "cityKana": "トットリシ",
+  "town": "東町",
+  "townKana": "ヒガシマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0857",
+  "note": "県庁"
+ },
+ {
+  "zip": "690-0887",
+  "prefCode": 32,
+  "pref": "島根県",
+  "prefKana": "シマネケン",
+  "city": "松江市",
+  "cityKana": "マツエシ",
+  "town": "殿町",
+  "townKana": "トノマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0852",
+  "note": "県庁"
+ },
+ {
+  "zip": "700-0824",
+  "prefCode": 33,
+  "pref": "岡山県",
+  "prefKana": "オカヤマケン",
+  "city": "岡山市北区",
+  "cityKana": "オカヤマシキタク",
+  "town": "内山下",
+  "townKana": "ウチサンゲ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "086",
+  "note": "県庁"
+ },
+ {
+  "zip": "730-0011",
+  "prefCode": 34,
+  "pref": "広島県",
+  "prefKana": "ヒロシマケン",
+  "city": "広島市中区",
+  "cityKana": "ヒロシマシナカク",
+  "town": "基町",
+  "townKana": "モトマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "082",
+  "note": "県庁"
+ },
+ {
+  "zip": "753-0071",
+  "prefCode": 35,
+  "pref": "山口県",
+  "prefKana": "ヤマグチケン",
+  "city": "山口市",
+  "cityKana": "ヤマグチシ",
+  "town": "滝町",
+  "townKana": "タキマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "083",
+  "note": "県庁"
+ },
+ {
+  "zip": "770-0941",
+  "prefCode": 36,
+  "pref": "徳島県",
+  "prefKana": "トクシマケン",
+  "city": "徳島市",
+  "cityKana": "トクシマシ",
+  "town": "万代町",
+  "townKana": "バンダイチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "088",
+  "note": "県庁"
+ },
+ {
+  "zip": "760-0017",
+  "prefCode": 37,
+  "pref": "香川県",
+  "prefKana": "カガワケン",
+  "city": "高松市",
+  "cityKana": "タカマツシ",
+  "town": "番町",
+  "townKana": "バンチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "087",
+  "note": "県庁"
+ },
+ {
+  "zip": "790-0001",
+  "prefCode": 38,
+  "pref": "愛媛県",
+  "prefKana": "エヒメケン",
+  "city": "松山市",
+  "cityKana": "マツヤマシ",
+  "town": "一番町",
+  "townKana": "イチバンチョウ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "089",
+  "note": "県庁"
+ },
+ {
+  "zip": "780-0850",
+  "prefCode": 39,
+  "pref": "高知県",
+  "prefKana": "コウチケン",
+  "city": "高知市",
+  "cityKana": "コウチシ",
+  "town": "丸ノ内",
+  "townKana": "マルノウチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "088",
+  "note": "県庁"
+ },
+ {
+  "zip": "812-0045",
+  "prefCode": 40,
+  "pref": "福岡県",
+  "prefKana": "フクオカケン",
+  "city": "福岡市博多区",
+  "cityKana": "フクオカシハカタク",
+  "town": "東公園",
+  "townKana": "ヒガシコウエン",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "092",
+  "note": "県庁"
+ },
+ {
+  "zip": "840-0041",
+  "prefCode": 41,
+  "pref": "佐賀県",
+  "prefKana": "サガケン",
+  "city": "佐賀市",
+  "cityKana": "サガシ",
+  "town": "城内",
+  "townKana": "ジョウナイ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0952",
+  "note": "県庁"
+ },
+ {
+  "zip": "850-0058",
+  "prefCode": 42,
+  "pref": "長崎県",
+  "prefKana": "ナガサキケン",
+  "city": "長崎市",
+  "cityKana": "ナガサキシ",
+  "town": "尾上町",
+  "townKana": "オノウエマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "095",
+  "note": "県庁"
+ },
+ {
+  "zip": "862-0950",
+  "prefCode": 43,
+  "pref": "熊本県",
+  "prefKana": "クマモトケン",
+  "city": "熊本市中央区",
+  "cityKana": "クマモトシチュウオウク",
+  "town": "水前寺",
+  "townKana": "スイゼンジ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "096",
+  "note": "県庁"
+ },
+ {
+  "zip": "870-0022",
+  "prefCode": 44,
+  "pref": "大分県",
+  "prefKana": "オオイタケン",
+  "city": "大分市",
+  "cityKana": "オオイタシ",
+  "town": "大手町",
+  "townKana": "オオテマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "097",
+  "note": "県庁"
+ },
+ {
+  "zip": "880-0805",
+  "prefCode": 45,
+  "pref": "宮崎県",
+  "prefKana": "ミヤザキケン",
+  "city": "宮崎市",
+  "cityKana": "ミヤザキシ",
+  "town": "橘通東",
+  "townKana": "タチバナドオリヒガシ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "0985",
+  "note": "県庁"
+ },
+ {
+  "zip": "890-0064",
+  "prefCode": 46,
+  "pref": "鹿児島県",
+  "prefKana": "カゴシマケン",
+  "city": "鹿児島市",
+  "cityKana": "カゴシマシ",
+  "town": "鴨池新町",
+  "townKana": "カモイケシンマチ",
+  "kind": "center",
+  "zone": [
+   "main"
+  ],
+  "areaCode": "099",
+  "note": "県庁"
+ },
+ {
+  "zip": "900-0021",
+  "prefCode": 47,
+  "pref": "沖縄県",
+  "prefKana": "オキナワケン",
+  "city": "那覇市",
+  "cityKana": "ナハシ",
+  "town": "泉崎",
+  "townKana": "イズミザキ",
+  "kind": "center",
+  "zone": [
+   "okinawa"
+  ],
+  "areaCode": "098",
+  "note": "県庁"
+ },
+ {
+  "zip": "097-1201",
+  "prefCode": 1,
+  "pref": "北海道",
+  "prefKana": "ホッカイドウ",
+  "city": "礼文郡礼文町",
+  "cityKana": "レブングンレブンチョウ",
+  "town": "香深村",
+  "townKana": "カフカムラ",
+  "kind": "island",
+  "zone": [
+   "hokkaido",
+   "island"
+  ],
+  "areaCode": "0163",
+  "note": "役場",
+  "name": "礼文島",
+  "nameKana": "レブントウ"
+ },
+ {
+  "zip": "043-1401",
+  "prefCode": 1,
+  "pref": "北海道",
+  "prefKana": "ホッカイドウ",
+  "city": "奥尻郡奥尻町",
+  "cityKana": "オクシリグンオクシリチョウ",
+  "town": "奥尻",
+  "townKana": "オクシリ",
+  "kind": "island",
+  "zone": [
+   "hokkaido",
+   "island"
+  ],
+  "areaCode": "01397",
+  "note": "役場",
+  "name": "奥尻島",
+  "nameKana": "オクシリトウ"
+ },
+ {
+  "zip": "998-0281",
+  "prefCode": 6,
+  "pref": "山形県",
+  "prefKana": "ヤマガタケン",
+  "city": "酒田市",
+  "cityKana": "サカタシ",
+  "town": "飛島",
+  "townKana": "トビシマ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0234",
+  "note": "市の一部だけが離島。市区町村名では判定できない例",
+  "name": "飛島",
+  "nameKana": "トビシマ"
+ },
+ {
+  "zip": "100-0101",
+  "prefCode": 13,
+  "pref": "東京都",
+  "prefKana": "トウキョウト",
+  "city": "大島町",
+  "cityKana": "オオシママチ",
+  "town": "元町",
+  "townKana": "モトマチ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "04992",
+  "note": "町役場",
+  "name": "伊豆大島",
+  "nameKana": "イズオオシマ"
+ },
+ {
+  "zip": "100-1401",
+  "prefCode": 13,
+  "pref": "東京都",
+  "prefKana": "トウキョウト",
+  "city": "八丈島八丈町",
+  "cityKana": "ハチジョウジマハチジョウマチ",
+  "town": "大賀郷",
+  "townKana": "オオカゴウ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "04996",
+  "note": "町役場",
+  "name": "八丈島",
+  "nameKana": "ハチジョウジマ"
+ },
+ {
+  "zip": "100-2101",
+  "prefCode": 13,
+  "pref": "東京都",
+  "prefKana": "トウキョウト",
+  "city": "小笠原村",
+  "cityKana": "オガサワラムラ",
+  "town": "父島",
+  "townKana": "チチジマ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "04998",
+  "note": "村役場。船が週 1 便",
+  "name": "父島",
+  "nameKana": "チチジマ"
+ },
+ {
+  "zip": "952-1209",
+  "prefCode": 15,
+  "pref": "新潟県",
+  "prefKana": "ニイガタケン",
+  "city": "佐渡市",
+  "cityKana": "サドシ",
+  "town": "千種",
+  "townKana": "チグサ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0259",
+  "note": "市役所",
+  "name": "佐渡島",
+  "nameKana": "サドガシマ"
+ },
+ {
+  "zip": "685-0015",
+  "prefCode": 32,
+  "pref": "島根県",
+  "prefKana": "シマネケン",
+  "city": "隠岐郡隠岐の島町",
+  "cityKana": "オキグンオキノシマチョウ",
+  "town": "港町",
+  "townKana": "ミナトマチ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "08512",
+  "note": "町役場",
+  "name": "隠岐",
+  "nameKana": "オキ"
+ },
+ {
+  "zip": "761-4301",
+  "prefCode": 37,
+  "pref": "香川県",
+  "prefKana": "カガワケン",
+  "city": "小豆郡小豆島町",
+  "cityKana": "ショウズグンショウドシマチョウ",
+  "town": "池田",
+  "townKana": "イケダ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0879",
+  "note": "町役場",
+  "name": "小豆島",
+  "nameKana": "ショウドシマ"
+ },
+ {
+  "zip": "817-0021",
+  "prefCode": 42,
+  "pref": "長崎県",
+  "prefKana": "ナガサキケン",
+  "city": "対馬市",
+  "cityKana": "ツシマシ",
+  "town": "厳原町今屋敷",
+  "townKana": "イヅハラマチイマヤシキ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0920",
+  "note": "市役所",
+  "name": "対馬",
+  "nameKana": "ツシマ"
+ },
+ {
+  "zip": "853-0001",
+  "prefCode": 42,
+  "pref": "長崎県",
+  "prefKana": "ナガサキケン",
+  "city": "五島市",
+  "cityKana": "ゴトウシ",
+  "town": "栄町",
+  "townKana": "サカエマチ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0959",
+  "note": "市役所",
+  "name": "福江島",
+  "nameKana": "フクエジマ"
+ },
+ {
+  "zip": "891-4205",
+  "prefCode": 46,
+  "pref": "鹿児島県",
+  "prefKana": "カゴシマケン",
+  "city": "熊毛郡屋久島町",
+  "cityKana": "クマゲグンヤクシマチョウ",
+  "town": "宮之浦",
+  "townKana": "ミヤノウラ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0997",
+  "note": "町役場",
+  "name": "屋久島",
+  "nameKana": "ヤクシマ"
+ },
+ {
+  "zip": "894-0025",
+  "prefCode": 46,
+  "pref": "鹿児島県",
+  "prefKana": "カゴシマケン",
+  "city": "奄美市",
+  "cityKana": "アマミシ",
+  "town": "名瀬幸町",
+  "townKana": "ナゼサイワイチョウ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0997",
+  "note": "市役所",
+  "name": "奄美大島",
+  "nameKana": "アマミオオシマ"
+ },
+ {
+  "zip": "891-9301",
+  "prefCode": 46,
+  "pref": "鹿児島県",
+  "prefKana": "カゴシマケン",
+  "city": "大島郡与論町",
+  "cityKana": "オオシマグンヨロンチョウ",
+  "town": "茶花",
+  "townKana": "チャバナ",
+  "kind": "island",
+  "zone": [
+   "island"
+  ],
+  "areaCode": "0997",
+  "note": "町役場",
+  "name": "与論島",
+  "nameKana": "ヨロンジマ"
+ },
+ {
+  "zip": "906-0012",
+  "prefCode": 47,
+  "pref": "沖縄県",
+  "prefKana": "オキナワケン",
+  "city": "宮古島市",
+  "cityKana": "ミヤコジマシ",
+  "town": "平良西里",
+  "townKana": "ヒララニシザト",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "0980",
+  "note": "市役所",
+  "name": "宮古島",
+  "nameKana": "ミヤコジマ"
+ },
+ {
+  "zip": "907-0012",
+  "prefCode": 47,
+  "pref": "沖縄県",
+  "prefKana": "オキナワケン",
+  "city": "石垣市",
+  "cityKana": "イシガキシ",
+  "town": "美崎町",
+  "townKana": "ミサキチョウ",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "0980",
+  "note": "市役所",
+  "name": "石垣島",
+  "nameKana": "イシガキジマ"
+ },
+ {
+  "zip": "907-1801",
+  "prefCode": 47,
+  "pref": "沖縄県",
+  "prefKana": "オキナワケン",
+  "city": "八重山郡与那国町",
+  "cityKana": "ヤエヤマグンヨナグニチョウ",
+  "town": "与那国",
+  "townKana": "ヨナグニ",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "0980",
+  "note": "町役場",
+  "name": "与那国島",
+  "nameKana": "ヨナグニジマ"
+ },
+ {
+  "zip": "901-3805",
+  "prefCode": 47,
+  "pref": "沖縄県",
+  "prefKana": "オキナワケン",
+  "city": "島尻郡南大東村",
+  "cityKana": "シマジリグンミナミダイトウソン",
+  "town": "在所",
+  "townKana": "ザイショ",
+  "kind": "island",
+  "zone": [
+   "okinawa",
+   "island"
+  ],
+  "areaCode": "09802",
+  "note": "村役場",
+  "name": "南大東島",
+  "nameKana": "ミナミダイトウジマ"
+ }
+]

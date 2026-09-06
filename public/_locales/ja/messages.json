@@ -1,0 +1,236 @@
+{
+  "appName": {
+    "message": "jp-dummy-fill",
+    "description": "Extension name. Shown in the Chrome Web Store and on chrome://extensions."
+  },
+  "appDesc": {
+    "message": "日本語フォームにテストデータを入力。フリガナ、郵便番号の分割、都道府県、和暦に対応",
+    "description": "Shown in the Chrome Web Store and on chrome://extensions."
+  },
+  "menuFill": {
+    "message": "このページに入力",
+    "description": "Right-click menu entry. Fills the empty fields with the person this page got when it was opened; a new person every time the page is opened."
+  },
+  "menuFillOne": {
+    "message": "この欄にデータを埋める…",
+    "description": "Right-click menu entry that opens the in-page palette of field kinds next to the field that was right-clicked. The chosen kind overwrites the field."
+  },
+  "menuAddress": {
+    "message": "住所を遠隔地・離島に替える…",
+    "description": "Context menu: opens the palette of remote regions and islands"
+  },
+  "group_name": {
+    "message": "氏名",
+    "description": "Submenu heading."
+  },
+  "group_address": {
+    "message": "住所",
+    "description": "Submenu heading."
+  },
+  "group_contact": {
+    "message": "連絡先",
+    "description": "Submenu heading."
+  },
+  "group_birth": {
+    "message": "生年月日",
+    "description": "Submenu heading."
+  },
+  "group_company": {
+    "message": "会社",
+    "description": "Submenu heading."
+  },
+  "group_other": {
+    "message": "その他",
+    "description": "Submenu heading."
+  },
+  "kind_name_full": {
+    "message": "氏名"
+  },
+  "kind_name_family": {
+    "message": "姓"
+  },
+  "kind_name_given": {
+    "message": "名"
+  },
+  "kind_kana_full": {
+    "message": "フリガナ（氏名）"
+  },
+  "kind_kana_family": {
+    "message": "フリガナ（セイ）"
+  },
+  "kind_kana_given": {
+    "message": "フリガナ（メイ）"
+  },
+  "kind_postal": {
+    "message": "郵便番号"
+  },
+  "kind_postal_1": {
+    "message": "郵便番号（前3桁）"
+  },
+  "kind_postal_2": {
+    "message": "郵便番号（後4桁）"
+  },
+  "kind_prefecture": {
+    "message": "都道府県"
+  },
+  "kind_city": {
+    "message": "市区町村"
+  },
+  "kind_town": {
+    "message": "町名・番地"
+  },
+  "kind_block": {
+    "message": "番地だけ"
+  },
+  "kind_building": {
+    "message": "建物名"
+  },
+  "kind_room": {
+    "message": "部屋番号"
+  },
+  "kind_address_full": {
+    "message": "住所（全体）"
+  },
+  "kind_address_kana": {
+    "message": "住所フリガナ"
+  },
+  "kind_country": {
+    "message": "国"
+  },
+  "kind_tel": {
+    "message": "電話番号"
+  },
+  "kind_tel_1": {
+    "message": "電話番号（市外局番）"
+  },
+  "kind_tel_2": {
+    "message": "電話番号（市内局番）"
+  },
+  "kind_tel_3": {
+    "message": "電話番号（加入者番号）"
+  },
+  "kind_fax": {
+    "message": "FAX"
+  },
+  "kind_email": {
+    "message": "メールアドレス"
+  },
+  "kind_password": {
+    "message": "パスワード"
+  },
+  "kind_username": {
+    "message": "ユーザー名"
+  },
+  "kind_url": {
+    "message": "URL"
+  },
+  "kind_birth": {
+    "message": "生年月日"
+  },
+  "kind_birth_y": {
+    "message": "年"
+  },
+  "kind_birth_m": {
+    "message": "月"
+  },
+  "kind_birth_d": {
+    "message": "日"
+  },
+  "kind_era": {
+    "message": "元号"
+  },
+  "kind_age": {
+    "message": "年齢"
+  },
+  "kind_gender": {
+    "message": "性別"
+  },
+  "kind_company": {
+    "message": "会社名"
+  },
+  "kind_company_kana": {
+    "message": "会社名フリガナ"
+  },
+  "kind_department": {
+    "message": "部署"
+  },
+  "kind_job_title": {
+    "message": "役職"
+  },
+  "kind_message": {
+    "message": "自由記述"
+  },
+  "kind_text": {
+    "message": "短いテキスト"
+  },
+  "kind_number": {
+    "message": "数値"
+  },
+  "kind_agree": {
+    "message": "チェックを入れる"
+  },
+  "kind_select": {
+    "message": "先頭の選択肢"
+  },
+  "palettePlaceholder": {
+    "message": "何を入れる？（しく、セイ、電話…）",
+    "description": "Placeholder of the palette's search box."
+  },
+  "paletteGuess": {
+    "message": "自動の判定: $KIND$",
+    "description": "Shown in the palette. What the rules would have filled this field with.",
+    "placeholders": {
+      "kind": {
+        "content": "$1",
+        "example": "短いテキスト"
+      }
+    }
+  },
+  "paletteRecall": {
+    "message": "人物を番号で呼び出す…",
+    "description": "Last row of the palette. Switches the page to the person with the given number and fills the empty fields."
+  },
+  "paletteRecallPlaceholder": {
+    "message": "番号（メールアドレスの末尾の数字）",
+    "description": "Placeholder of the palette's search box once 'Recall a person by number…' was chosen."
+  },
+  "cmdFill": {
+    "message": "このページに入力",
+    "description": "Shown on chrome://extensions/shortcuts, next to the key assignment."
+  },
+  "cmdPick": {
+    "message": "フォーカスのある欄に入れる…（パレットを開く）",
+    "description": "Shown on chrome://extensions/shortcuts, next to the key assignment."
+  },
+  "errUnsupported": {
+    "message": "このページには入力できません",
+    "description": "Tooltip on the toolbar icon after a failure."
+  },
+  "errFileAccess": {
+    "message": "拡張機能の詳細で「ファイルの URL へのアクセスを許可する」を有効にしてください"
+  },
+  "errNoTarget": {
+    "message": "入力欄の上で右クリックしてから選んでください",
+    "description": "Tooltip when 'Fill this field with…' was chosen but no field was under the pointer."
+  },
+  "placeHome": {
+    "message": "元の住所に戻す",
+    "description": "Place palette: first row, returns to the person's own address"
+  },
+  "placeGroupRegion": {
+    "message": "配送料の区分が別の地域",
+    "description": "Place palette heading: Hokkaido, Kyushu, Okinawa main island"
+  },
+  "placeGroupIsland": {
+    "message": "離島",
+    "description": "Place palette heading: outlying islands"
+  },
+  "placePlaceholder": {
+    "message": "地名で絞り込み（さど、おきなわ…）",
+    "description": "Place palette: placeholder of the filter box"
+  },
+  "cmdPlace": {
+    "message": "住所を遠隔地・離島に替える…",
+    "description": "Shortcut description shown in chrome://extensions/shortcuts"
+  }
+}

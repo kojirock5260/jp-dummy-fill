@@ -1,0 +1,25 @@
+{
+  "name": "jp-dummy-fill",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b && vite build && vite build --config vite.content.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "data": "tsc -p tsconfig.scripts.json && node scripts/build-addresses.ts",
+    "data:check": "tsc -p tsconfig.scripts.json && node scripts/build-addresses.ts --check"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.11",
+    "@types/chrome": "^0.0.280",
+    "@types/node": "^26.4.0",
+    "jsdom": "^30.0.1",
+    "typescript": "^5.6.3",
+    "vite": "^8.2.0",
+    "vitest": "^4.1.10",
+    "yubin": "^0.2.2"
+  }
+}

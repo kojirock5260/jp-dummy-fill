@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>日本語フォーム判定用</title>
+<style>
+  body { font: 14px sans-serif; max-width: 640px; margin: 2em auto; }
+  h2 { font-size: 15px; margin: 1.6em 0 .4em; border-bottom: 1px solid #ccc; }
+  label { display: block; margin: .8em 0 .2em; }
+  input, select, textarea { padding: .3em; }
+  fieldset { margin: .8em 0; }
+  pre { background: #f4f4f4; padding: .8em; white-space: pre-wrap; }
+</style>
+<!--
+  docs/field-rules.md §6 の name 属性を全部持つ。手動確認は「値を表示」で。
+  自動確認は tests/presentation/acceptance.test.ts がこのファイルを読む。
+-->
+<form>
+  <h2>氏名</h2>
+
+  <label>氏名</label>
+  <input name="sei" placeholder="姓"> <input name="mei" placeholder="名">
+
+  <label>フリガナ（セイ・メイ）</label>
+  <input name="sei_kana" placeholder="セイ"> <input name="mei_kana" placeholder="メイ">
+
+  <label>ふりがな（ひらがな・氏名まとめて）</label>
+  <input name="name_kana" placeholder="やまだ たろう">
+
+  <label>お名前（インデックス流儀）</label>
+  <input name="name1"> <input name="name2">
+
+  <label>フリガナ（インデックス流儀）</label>
+  <input name="kana1"> <input name="kana2">
+
+  <label>読み（placeholder だけがヒント）</label>
+  <input name="reading" placeholder="ふりがな">
+
+  <h2>住所</h2>
+
+  <label>郵便番号</label>
+  <input name="zip1" maxlength="3" size="4"> - <input name="zip2" maxlength="4" size="5">
+
+  <label>都道府県</label>
+  <select name="pref">
+    <option value="">選択してください</option>
+    <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option>
+    <option>秋田県</option><option>山形県</option><option>福島県</option><option>茨城県</option>
+    <option>栃木県</option><option>群馬県</option><option>埼玉県</option><option>千葉県</option>
+    <option>東京都</option><option>神奈川県</option><option>新潟県</option><option>富山県</option>
+    <option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option>
+    <option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option>
+    <option>滋賀県</option><option>京都府</option><option>大阪府</option><option>兵庫県</option>
+    <option>奈良県</option><option>和歌山県</option><option>鳥取県</option><option>島根県</option>
+    <option>岡山県</option><option>広島県</option><option>山口県</option><option>徳島県</option>
+    <option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option>
+    <option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option>
+    <option>宮崎県</option><option>鹿児島県</option><option>沖縄県</option>
+  </select>
+
+  <label>市区町村・番地</label>
+  <input name="address1" size="40">
+
+  <label>住所（フリガナ）</label>
+  <input name="address_kana" size="40">
+
+  <label>郵便番号（単一・7桁）</label>
+  <input name="zip" maxlength="7">
+
+  <label>郵便番号（単一・ハイフン付き）</label>
+  <input name="zipcode" maxlength="8" placeholder="100-0001">
+
+  <label>住所（単一）</label>
+  <input name="address" size="50">
+
+  <h2>連絡先</h2>
+
+  <label>電話番号</label>
+  <input name="tel1" maxlength="4" size="5"> - <input name="tel2" maxlength="4" size="5"> - <input name="tel3" maxlength="4" size="5">
+
+  <label>電話番号（単一）</label>
+  <input name="tel" placeholder="090-0000-0000">
+
+  <label>FAX</label>
+  <input name="fax">
+
+  <label>メールアドレス</label>
+  <input name="email" type="email">
+
+  <label>メールアドレス（確認）</label>
+  <input name="email_confirm" type="email">
+
+  <label>パスワード</label>
+  <input name="password" type="password">
+
+  <label>パスワード（確認）</label>
+  <input name="password_confirm" type="password">
+
+  <label>URL</label>
+  <input name="url">
+
+  <h2>生年月日ほか</h2>
+
+  <label>生年月日</label>
+  <select name="birth_era"><option>昭和</option><option>平成</option><option>令和</option></select>
+  <input name="birth_y" size="3">年 <input name="birth_m" size="2">月 <input name="birth_d" size="2">日
+
+  <label>生年月日（type=date）</label>
+  <input name="birthday" type="date">
+
+  <label>生年月日（select・西暦）</label>
+  <select name="birth_year"><option value="">--</option></select>年
+  <select name="birth_month"><option value="">--</option></select>月
+  <select name="birth_day"><option value="">--</option></select>日
+
+  <label>年齢</label>
+  <input name="age" type="number" min="0" max="120">
+
+  <fieldset>
+    <legend>性別</legend>
+    <label><input type="radio" name="gender" value="male"> 男性</label>
+    <label><input type="radio" name="gender" value="female"> 女性</label>
+  </fieldset>
+
+  <h2>会社</h2>
+
+  <label>会社名</label>
+  <input name="company">
+
+  <label>会社名（フリガナ）</label>
+  <input name="company_kana">
+
+  <label>部署</label>
+  <input name="department">
+
+  <h2>その他</h2>
+
+  <label>お問い合わせ内容</label>
+  <textarea name="message" rows="4" cols="50"></textarea>
+
+  <label><input type="checkbox" name="agree"> 利用規約に同意する</label>
+  <label><input type="checkbox" name="newsletter"> メールマガジンを受け取る</label>
+
+  <input type="hidden" name="_token" value="fixture">
+
+  <p><button type="button" id="show">値を表示</button></p>
+  <pre id="out"></pre>
+</form>
+<script>
+  // 年・月・日の select を埋める。手で 100 行書かないため。
+  const fill = (name, from, to) => {
+    const sel = document.querySelector(`select[name="${name}"]`);
+    for (let i = from; i <= to; i++) {
+      sel.append(new Option(String(i), String(i)));
+    }
+  };
+  fill("birth_year", 1950, 2010);
+  fill("birth_month", 1, 12);
+  fill("birth_day", 1, 31);
+
+  document.getElementById("show").addEventListener("click", () => {
+    const rows = [...document.querySelectorAll("input, select, textarea")]
+      .filter((e) => e.type !== "button")
+      .map((e) => {
+        const v = e.type === "checkbox" || e.type === "radio" ? (e.checked ? "checked" : "") : e.value;
+        return `${e.name} = ${v}`;
+      });
+    document.getElementById("out").textContent = rows.join("\n");
+  });
+</script>
+</html>
