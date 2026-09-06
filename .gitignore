@@ -7,3 +7,4 @@ tsconfig.tsbuildinfo
 *.crx
 *.pem
 *.zip
+store/
