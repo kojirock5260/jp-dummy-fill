@@ -19,7 +19,7 @@
 
 ## インストール
 
-Chrome Web Store: （未公開）
+Chrome Web Store: <https://chromewebstore.google.com/detail/jp-dummy-fill/likiphcnpamhfafnnehfhnjgbonaafpb>
 
 変更は [変更履歴](CHANGELOG.ja.md) を参照。
 

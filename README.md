@@ -18,7 +18,7 @@ Nothing is collected or transmitted. The extension reads the form fields on the 
 
 ## Install
 
-Chrome Web Store: (not published)
+Chrome Web Store: <https://chromewebstore.google.com/detail/jp-dummy-fill/likiphcnpamhfafnnehfhnjgbonaafpb>
 
 See the [changelog](CHANGELOG.md).
 
