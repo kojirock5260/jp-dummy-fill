@@ -232,5 +232,61 @@
   "cmdPlace": {
     "message": "Change the address to remote / island…",
     "description": "Shortcut description shown in chrome://extensions/shortcuts"
+  },
+  "group_payment": {
+    "message": "Payment",
+    "description": "Palette heading"
+  },
+  "kind_name_romaji": {
+    "message": "Name in Latin letters",
+    "description": "Palette row: field kind"
+  },
+  "kind_name_romaji_family": {
+    "message": "Family name in Latin letters",
+    "description": "Palette row: field kind"
+  },
+  "kind_name_romaji_given": {
+    "message": "Given name in Latin letters",
+    "description": "Palette row: field kind"
+  },
+  "kind_date_future": {
+    "message": "Preferred date (a week ahead)",
+    "description": "Palette row: field kind"
+  },
+  "kind_corporate_number": {
+    "message": "Corporate number",
+    "description": "Palette row: field kind"
+  },
+  "kind_invoice_number": {
+    "message": "Invoice registration number",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_number": {
+    "message": "Card number",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_holder": {
+    "message": "Cardholder name",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_expiry": {
+    "message": "Expiry (MM/YY)",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_expiry_month": {
+    "message": "Expiry month",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_expiry_year": {
+    "message": "Expiry year",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_cvc": {
+    "message": "Security code",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_brand": {
+    "message": "Card brand",
+    "description": "Palette row: field kind"
   }
 }

@@ -60,9 +60,11 @@ Chrome 自動入力のヒューリスティックに合わせる。上にある�
 | `name_full` | `name` `fullname` `full_name` `shimei` `simei` `onamae` | 氏名 お名前 名前 ご氏名 | `name` | 山田 太郎 |
 | `name_family` | `sei` `last_name` `lastname` `lname` `family_name` `familyname` `surname` `myoji` `myouji` `last` | 姓 苗字 名字 | `family-name` | 山田 |
 | `name_given` | `mei` `first_name` `firstname` `fname` `given_name` `givenname` `given` `first` | 名 | `given-name` | 太郎 |
+| `name_romaji` `name_romaji_family` `name_romaji_given` | 氏名の語 ＋ `romaji` `roman` `alphabet` `english` `en`（`name_en` `last_name_en`） | 氏名・姓・名 ＋ ローマ字 英字 アルファベット | 氏名の autocomplete ＋ ローマ字の語 | TAROU YAMADA / YAMADA / TAROU |
 
 - `name` 単体は `name_full`。ただし同じフォーム内に `name_family` / `name_given` があるなら `name` は無視候補（`name="name"` を持つ別用途の欄が多い）。
 - 「名」1文字は「氏名」「会社名」「建物名」にも含まれる。label が **ちょうど**「名」または「名（漢字）」のときだけ `name_given`。
+- ローマ字は既定で「名 姓」を大文字（TAROU YAMADA）。例が「YAMADA TARO」や「姓 名」なら姓を先に、「Taro Yamada」のように小文字を含むなら頭だけ大文字（§5）。
 
 ### 2.2 カナ
 
@@ -117,6 +119,7 @@ Chrome 自動入力のヒューリスティックに合わせる。上にある�
 | `username` | `username` `user_name` `login_id` `user_id` `account` `account_id` `nickname` `handle` | ユーザー名 ユーザーID ログインID ニックネーム アカウント名 | `username` `nickname` | yamada_taro |
 
 - `email_confirm` は `email` の後ろに出る 2 番目の email 欄でも判定する（トークンが無いフォームが多い）。password も同様。
+- placeholder の形も見る。`taro@example.com` の形はメール、`@username` の形はユーザー名（SNS のハンドル欄）。語が無い英語のフォームでは例の形だけが手掛かり。
 
 ### 2.6 生年月日・年齢・性別
 
@@ -129,10 +132,12 @@ Chrome 自動入力のヒューリスティックに合わせる。上にある�
 | `era` | `era` `gengo` `wareki` `nengo` | 元号 和暦 | — | 平成 |
 | `age` | `age` `nenrei` | 年齢 | — | 34 |
 | `gender` | `gender` `sex` `seibetsu` | 性別 | `sex` | 男性 / 女性 |
+| `date_future` | `delivery_date` `visit_date` `reservation_date` `desired` `preferred` `kibou` `yoyaku` | 希望日 予約日 お届け日 配達日 来店日 利用日 | `type=date` ＋ 希望日の語 | 基準日の 7 日後。土日なら次の月曜 |
 
 - `year` `month` `day` 単体は、同じフォームに `birth` 系トークンが無くても、3 つ揃っていれば生年月日として扱う。
 - `era` があれば `birth_y` は和暦年で入れる（§5.3）。
 - `gender` は Person の性別に合わせて radio / select を選ぶ。名前の読みとも整合させる。
+- `date_future` の年・月・日の分割には値を作らない。日付の select（「9月24日(木)」の並び）は先頭。
 
 ### 2.7 会社・肩書
 
@@ -141,19 +146,21 @@ Chrome 自動入力のヒューリスティックに合わせる。上にある�
 | `company` | `company` `company_name` `corp` `corporation` `organization` `org` `kaisha` `kigyo` `hojin` | 会社名 企業名 法人名 団体名 貴社名 御社名 | `organization` | 山田商事株式会社 |
 | `department` | `department` `dept` `busho` `division` `section` | 部署 部署名 所属 | — | 営業部 |
 | `job_title` | `job_title` `title` `position` `yakushoku` `role` | 役職 肩書 | `organization-title` | 課長 |
-| `url` | `url` `website` `web_site` `homepage` `hp` `site` | URL ホームページ サイト | `type=url` / `url` | https://example.jp/ |
+| `url` | `url` `website` `web_site` `homepage` `hp` `site`、または placeholder が `https://` の形 | URL ホームページ サイト | `type=url` / `url` | https://example.jp/。placeholder が URL ならそのドメイン ＋ `/` ＋ ユーザー名（`https://facebook.com/abe_shou_0`） |
+| `corporate_number` | `corporate_number` `houjin_bangou` `hojin_no` `company_number` | 法人番号 | — | 検査用数字が通る 13 桁（§4） |
+| `invoice_number` | `invoice_number` `invoice_no` `tekikaku` | 適格請求書発行事業者登録番号 インボイス 事業者登録番号 | — | T ＋ 法人番号 |
 
 ### 2.8 自由記述・その他
 
 | 欄種 | 判定 | 値 |
 |---|---|---|
-| `message` | `<textarea>`、または `message` `comment` `inquiry` `naiyo` `naiyou` `body` `remarks` `bikou` / お問い合わせ内容 ご要望 備考 コメント メッセージ | 2〜3文の日本語（lorem ipsum は使わない） |
+| `message` | `<textarea>`、または `message` `comment` `inquiry` `naiyo` `naiyou` `body` `remarks` `bikou` / お問い合わせ内容 ご要望 備考 コメント メッセージ | 2〜3文の日本語（lorem ipsum は使わない）。label / placeholder が英語だけなら英語の文 |
 | `agree` | checkbox で `agree` `consent` `terms` `kiyaku` `privacy` / 同意 規約 承諾 | **ON** |
 | `number` | `type=number` | `min`〜`max` の範囲内。無ければ 1〜100 |
 | `select` | 上記のどれにも当たらない `<select>` | 空 / 「選択してください」系を除いた先頭。都道府県・元号・性別は該当欄種に従う |
 | `radio` | 上記のどれにも当たらない radio グループ | 先頭を選ぶ（性別は Person に従う） |
 | `checkbox` | `agree` 以外 | **触らない**（§7 で要決定） |
-| `text` | 何にも当たらない text | 短い日本語 1 語〜1 文 |
+| `text` | 何にも当たらない text | 短い日本語 1 語〜1 文。label / placeholder が英語だけなら `Test input` |
 
 ### 2.9 触らない欄
 
@@ -162,6 +169,22 @@ Chrome 自動入力のヒューリスティックに合わせる。上にある�
 - name/id に `csrf` `token` `_token` `authenticity_token` `captcha` `recaptcha` `honeypot` `nonce`
 - 画面外・`display:none` の欄（presentation 層で除外。honeypot 対策）
 - 既に値が入っている欄（既定。オプションで上書き可）
+
+### 2.10 決済（クレジットカード）
+
+| 欄種 | name / id トークン | label / placeholder トークン | type / autocomplete | 値 |
+|---|---|---|---|---|
+| `card_number` | `card` `card_number` `cardno` `credit_card` `cc_number` | クレジットカード カード番号 | `cc-number` | 4242424242424242。例や maxlength が区切りを示せば 4 桁ずつ |
+| `card_1`〜`card_4` | `card_no1`〜`card_no4`、または `card_number` が 4 つ並ぶ（§3） | — | — | 4 桁ずつ |
+| `card_holder` | `card_holder` `card_name` `holder` `meigi` | カード名義 名義人 名義 | `cc-name` | ローマ字氏名と同じ規則 |
+| `card_expiry` | `expiry` `exp` `card_exp` `valid_thru` `yuko` `kigen` | 有効期限 | `cc-exp` / `type=month` | MM/YY。例に従って MM/YYYY・YY/MM・MMYY。`type=month` は YYYY-MM |
+| `card_expiry_month` `card_expiry_year` | `exp_month` `exp_year` `expmonth` `expyear` | 有効期限（月） 有効期限（年） | `cc-exp-month` `cc-exp-year` | 12 / 2029（maxlength 2 なら 29） |
+| `card_cvc` | `cvc` `cvv` `csc` `security_code` | セキュリティコード | `cc-csc` | 123。maxlength 4 なら 1234 |
+| `card_brand` | `card_brand` `card_type` `card_company` | カード会社 カードブランド | `cc-type` | select / radio から VISA を選ぶ。無ければ先頭 |
+
+- `cc` 単体は語にしない。メールフォームの CC 欄に当たる。
+- 「有効期限」「セキュリティコード」「名義人」は `card` の語が無くてもカードの欄。カード以外でこれらの語が単独で出ることは少ない。
+- 番号は Stripe の Visa テスト番号。Luhn を満たし、他社のテスト環境でも受け付けられることが多い。本番の決済には通らない。
 
 ---
 
@@ -277,3 +300,7 @@ placeholder="ふりがな" の欄（ひらがな判定の確認）
 | 5 | 電話番号 | **制度上存在しない番号** | 携帯 `090-0XXX-XXXX`（09000〜09009 は未指定。080-0 は 0800 フリーダイヤルと衝突するので使わない）。固定は `0 + 市外局番 + 1 で始まる市内局番 + 4 桁`（市内局番は 0・1 で始まらない決まり）。市外局番は都道府県から引く |
 | 6 | 住所リスト | **実在の組 47 件から** | 郵便番号・都道府県・市区町村・町域は実在。番地・建物は架空。住居の無い町域（官庁街・皇居など）を優先。形の網羅は後から追加。日本郵便データからの再生成スクリプトと「全件まだ存在するか」のテストを置く |
 | 7 | storage 権限 | **使わない** | 権限は activeTab / scripting / contextMenus の 3 つ。snap-redact と同じ |
+| 8 | カード番号 | **Stripe の Visa テスト番号 4242 4242 4242 4242** | 2026-09-17。Luhn を満たし、決済代行のテスト環境で通る。有効期限は基準日の 3 年後の 12 月、セキュリティコードは 123。乱数にしない。開発者が見てテスト番号だと分かる値のほうが安全 |
+| 9 | 法人番号 | **国税庁の検査式を満たす 13 桁** | 2026-09-17。12 桁は seed の乱数（既存の乱数列の末尾に足したので 0.1.0 の値は変わらない）。実在の法人と一致することはありうるが、特定の法人は指さない。インボイスの登録番号は T ＋ 法人番号 |
+| 10 | ローマ字の並び | **名 姓、大文字** | 2026-09-17。カードの名義がこの並び。例が「YAMADA TARO」「姓 名」なら姓を先、例に小文字があれば頭だけ大文字 |
+| 11 | 希望日 | **7 日後の平日** | 2026-09-17。「明日以降」「3 日後以降」の制限をたいてい通り、定休日（土日）に当たらない |

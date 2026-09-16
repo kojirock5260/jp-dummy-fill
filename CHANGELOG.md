@@ -2,6 +2,29 @@
 
 [日本語](CHANGELOG.ja.md)
 
+## 1.0.0 — 2026-09-17
+
+### Added
+
+- Credit card fields: number (Stripe's Visa test card 4242 4242 4242 4242, grouped when
+  the field shows groups or is split into four boxes), cardholder name in Latin letters,
+  expiry as MM/YY, MM/YYYY, YY/MM, `type=month` or separate month and year selects,
+  security code, and the card brand select or radio (VISA)
+- Corporate number (法人番号): 13 digits that pass the National Tax Agency check digit,
+  and the invoice registration number (T + corporate number)
+- Names in Latin letters: 「氏名（ローマ字）」, `name_en`, `last_name_en` and the like.
+  Given name first in upper case by default, following the field's example otherwise
+- Preferred dates (配達希望日, 予約日, 来店日): a weekday one week ahead
+- A "Payment" group in the field palette
+- Placeholder shapes count as hints: `@username` is a handle, `taro@example.com` an email,
+  `https://facebook.com` a URL, which is then built under that domain
+  (`https://facebook.com/abe_shou_0`). Fields whose label and placeholder are English only
+  get English text instead of 「テスト入力」
+
+### Changed
+
+- Version 1.0.0. The rules, data and UI shipped in 0.1.0 are unchanged
+
 ## 0.1.0 — 2026-09-05
 
 ### Added

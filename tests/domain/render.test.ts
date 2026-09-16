@@ -4,6 +4,7 @@ import { type FieldInfo, type FieldKind, fieldInfo } from "../../src/domain/fiel
 import type { Person } from "../../src/domain/person";
 import {
   appendix,
+  futureDate,
   kanaScript,
   nameSeparator,
   phonePart,
@@ -36,6 +37,8 @@ const PERSON: Person = {
   given: "太郎",
   familyKana: "やまだ",
   givenKana: "たろう",
+  familyRomaji: "yamada",
+  givenRomaji: "tarou",
   address: ADDRESS,
   block: "1-2-3",
   building: "霞が関ビル 403",
@@ -53,6 +56,9 @@ const PERSON: Person = {
   department: "営業部",
   title: "課長",
   url: "https://example.jp/",
+  corporateNumber: "8123456789012",
+  invoiceNumber: "T8123456789012",
+  card: { number: "4242424242424242", brand: "visa", expMonth: 12, expYear: 2029, cvc: "123" },
 };
 
 const TODAY = new Date(2026, 8, 5);
@@ -569,5 +575,130 @@ describe("render / four-way address split (Amazon)", () => {
     const countries = [{ value: "AL", text: "Albania" }];
     expect(value("address_full", { tag: "select", type: "", options: countries })).toBeNull();
     expect(value("name_full", { tag: "select", type: "", options: countries })).toBeNull();
+  });
+});
+
+describe("payment, corporate number, romaji, future date", () => {
+  const ctx: RenderContext = { today: TODAY, kinds: new Set() };
+  const v = (kind: FieldKind, over: Partial<FieldInfo> = {}): string | null =>
+    render(kind, PERSON, fieldInfo(over), ctx);
+
+  it("card number: plain by default, grouped when the field shows groups", () => {
+    expect(v("card_number")).toBe("4242424242424242");
+    expect(v("card_number", { maxlength: 16 })).toBe("4242424242424242");
+    expect(v("card_number", { maxlength: 19 })).toBe("4242 4242 4242 4242");
+    expect(v("card_number", { placeholder: "1234-5678-9012-3456" })).toBe("4242-4242-4242-4242");
+    expect(v("card_1")).toBe("4242");
+    expect(v("card_4")).toBe("4242");
+  });
+
+  it("cardholder: given name first in upper case, following the example otherwise", () => {
+    expect(v("card_holder")).toBe("TAROU YAMADA");
+    expect(v("card_holder", { placeholder: "YAMADA TARO" })).toBe("YAMADA TAROU");
+    expect(v("card_holder", { placeholder: "Taro Yamada" })).toBe("Tarou Yamada");
+  });
+
+  it("expiry: MM/YY by default, following the placeholder and the type", () => {
+    expect(v("card_expiry")).toBe("12/29");
+    expect(v("card_expiry", { placeholder: "MM/YYYY" })).toBe("12/2029");
+    expect(v("card_expiry", { placeholder: "YY/MM" })).toBe("29/12");
+    expect(v("card_expiry", { placeholder: "MMYY" })).toBe("1229");
+    expect(v("card_expiry", { maxlength: 4 })).toBe("1229");
+    expect(v("card_expiry", { type: "month" })).toBe("2029-12");
+  });
+
+  it("expiry month and year: text and select", () => {
+    expect(v("card_expiry_month")).toBe("12");
+    expect(v("card_expiry_year")).toBe("2029");
+    expect(v("card_expiry_year", { maxlength: 2 })).toBe("29");
+    const months = Array.from({ length: 12 }, (_, i) => ({
+      value: String(i + 1),
+      text: `${i + 1}月`,
+    }));
+    expect(v("card_expiry_month", { tag: "select", type: "", options: months })).toBe("12");
+    const years = [2026, 2027, 2028, 2029, 2030].map((y) => ({
+      value: String(y).slice(2),
+      text: String(y),
+    }));
+    expect(v("card_expiry_year", { tag: "select", type: "", options: years })).toBe("29");
+  });
+
+  it("security code: 3 digits, 4 for a 4-digit box", () => {
+    expect(v("card_cvc")).toBe("123");
+    expect(v("card_cvc", { maxlength: 4 })).toBe("1234");
+  });
+
+  it("brand: picks VISA, falls back to the first brand", () => {
+    const brands = [
+      { value: "", text: "選択" },
+      { value: "mc", text: "Mastercard" },
+      { value: "vi", text: "VISA" },
+    ];
+    expect(v("card_brand", { tag: "select", type: "", options: brands })).toBe("vi");
+    const jcb = [
+      { value: "", text: "選択" },
+      { value: "jcb", text: "JCB" },
+    ];
+    expect(v("card_brand", { tag: "select", type: "", options: jcb })).toBe("jcb");
+    const radios = [
+      { value: "jcb", text: "JCB" },
+      { value: "visa", text: "Visa" },
+    ];
+    expect(v("card_brand", { type: "radio", options: radios })).toBe("visa");
+  });
+
+  it("corporate and invoice numbers", () => {
+    expect(v("corporate_number")).toBe("8123456789012");
+    expect(v("corporate_number", { label: "法人番号（全角）" })).toBe("８１２３４５６７８９０１２");
+    expect(v("invoice_number")).toBe("T8123456789012");
+  });
+
+  it("romaji names", () => {
+    expect(v("name_romaji")).toBe("TAROU YAMADA");
+    expect(v("name_romaji", { label: "氏名（ローマ字）姓 名" })).toBe("YAMADA TAROU");
+    expect(v("name_romaji_family")).toBe("YAMADA");
+    expect(v("name_romaji_given", { placeholder: "Taro" })).toBe("Tarou");
+  });
+
+  it("future date: a week ahead, skipping the weekend", () => {
+    // TODAY は 2026-09-05（土）。7 日後の 09-12 も土なので、次の月曜 09-14。
+    expect(v("date_future", { type: "date" })).toBe("2026-09-14");
+    expect(v("date_future")).toBe("2026/09/14");
+    expect(v("date_future", { placeholder: "2026/9/1" })).toBe("2026/9/14");
+    const days = [
+      { value: "", text: "選択" },
+      { value: "a", text: "9月10日" },
+    ];
+    expect(v("date_future", { tag: "select", type: "", options: days })).toBe("a");
+    expect(futureDate(new Date(2026, 8, 17))).toEqual({ y: 2026, m: 9, d: 24 });
+  });
+});
+
+describe("English fields and URL placeholders", () => {
+  const ctx: RenderContext = { today: TODAY, kinds: new Set() };
+  const v = (kind: FieldKind, over: Partial<FieldInfo> = {}): string | null =>
+    render(kind, PERSON, fieldInfo(over), ctx);
+
+  it("builds the URL under the placeholder's domain", () => {
+    expect(v("url", { placeholder: "https://facebook.com" })).toBe(
+      "https://facebook.com/yamada_tarou",
+    );
+    expect(v("url", { placeholder: "https://www.linkedin.com/in/your-name" })).toBe(
+      "https://www.linkedin.com/yamada_tarou",
+    );
+    expect(v("url")).toBe("https://example.jp/");
+    expect(v("url", { placeholder: "ホームページ" })).toBe("https://example.jp/");
+  });
+
+  it("writes English into fields whose hints are all English", () => {
+    expect(v("text", { label: "Nickname" })).toBe("Test input");
+    expect(v("text", { label: "ニックネーム" })).toBe("テスト入力");
+    expect(v("text")).toBe("テスト入力");
+    expect(
+      v("message", { tag: "textarea", type: "", placeholder: "Tell us about yourself" }),
+    ).toMatch(/^This is a test entry/);
+    expect(v("message", { tag: "textarea", type: "", label: "自己紹介" })).toMatch(
+      /^テスト用の入力です/,
+    );
   });
 });

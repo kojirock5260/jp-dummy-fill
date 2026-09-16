@@ -28,6 +28,9 @@ export type Tokens = {
 /**
  * 語から読み取れる特徴。欄種そのものではなく、欄種を決めるための材料。
  *
+ * `card` `holder` `expiry` `cvc` `brand` はクレジットカード、`corpnum` は法人番号、`invoice` は
+ * 適格請求書の登録番号、`romaji` はローマ字表記、`wish` は「希望日」の類（§2.6、§2.10）。
+ *
  * `part1`〜`part3` は分割欄の何番目かを語で示しているもの（`zip_upper` `tel_area`）。
  * `hiragana` `katakana` `zenkaku` `hankaku` `mobile` `home` は欄種には関わらず、
  * 文字種や書式の判定（§5）で使う。ここで一緒に拾っておくと、render 側でもう一度
@@ -75,7 +78,16 @@ export type Feature =
   | "skip"
   | "part1"
   | "part2"
-  | "part3";
+  | "part3"
+  | "card"
+  | "holder"
+  | "expiry"
+  | "cvc"
+  | "brand"
+  | "corpnum"
+  | "invoice"
+  | "romaji"
+  | "wish";
 
 export type Features = ReadonlySet<Feature>;
 
@@ -371,6 +383,66 @@ const WORDS: Record<string, Feature[]> = {
   nonce: ["skip"],
   search: ["skip"],
 
+  // クレジットカード（§2.10）。`cc` 単体は入れない。メールの CC 欄に当たる。
+  card: ["card"],
+  creditcard: ["card"],
+  credit: ["card"],
+  cardno: ["card"],
+  cardnumber: ["card"],
+  cardnum: ["card"],
+  ccnumber: ["card"],
+  ccnum: ["card"],
+  holder: ["holder"],
+  cardholder: ["card", "holder"],
+  cardname: ["card", "holder"],
+  holdername: ["holder"],
+  meigi: ["holder"],
+  expiry: ["expiry"],
+  expire: ["expiry"],
+  expired: ["expiry"],
+  expiration: ["expiry"],
+  exp: ["expiry"],
+  expdate: ["expiry"],
+  expmonth: ["expiry", "month"],
+  expyear: ["expiry", "year"],
+  expm: ["expiry", "month"],
+  expy: ["expiry", "year"],
+  yuko: ["expiry"],
+  yuukou: ["expiry"],
+  kigen: ["expiry"],
+  cvc: ["cvc"],
+  cvv: ["cvc"],
+  csc: ["cvc"],
+  cvc2: ["cvc"],
+  cvv2: ["cvc"],
+  securitycode: ["cvc"],
+  seccode: ["cvc"],
+  brand: ["brand"],
+  cardbrand: ["card", "brand"],
+  cardtype: ["card", "brand"],
+  cardcompany: ["card", "brand"],
+
+  hojinbango: ["corpnum"],
+  hojinbangou: ["corpnum"],
+  houjinbangou: ["corpnum"],
+  hojinno: ["corpnum"],
+  corporatenumber: ["corpnum"],
+  invoice: ["invoice"],
+  tekikaku: ["invoice"],
+
+  romaji: ["romaji"],
+  roman: ["romaji"],
+  alphabet: ["romaji"],
+  alpha: ["romaji"],
+  english: ["romaji"],
+  eng: ["romaji"],
+
+  desired: ["wish"],
+  preferred: ["wish"],
+  kibou: ["wish"],
+  kibo: ["wish"],
+  yoyaku: ["wish"],
+
   a: ["part1"],
   b: ["part2"],
   c: ["part3"],
@@ -412,6 +484,60 @@ const PHRASES: Record<string, Feature[]> = {
   web_site: ["url"],
   home_page: ["url"],
   site_url: ["url"],
+  card_number: ["card"],
+  card_no: ["card"],
+  credit_card: ["card"],
+  card_name: ["card", "holder"],
+  card_holder: ["card", "holder"],
+  holder_name: ["holder"],
+  card_exp: ["card", "expiry"],
+  exp_month: ["expiry", "month"],
+  exp_year: ["expiry", "year"],
+  expiry_month: ["expiry", "month"],
+  expiry_year: ["expiry", "year"],
+  expire_month: ["expiry", "month"],
+  expire_year: ["expiry", "year"],
+  expiration_month: ["expiry", "month"],
+  expiration_year: ["expiry", "year"],
+  valid_thru: ["expiry"],
+  security_code: ["cvc"],
+  card_type: ["card", "brand"],
+  card_brand: ["card", "brand"],
+  card_company: ["card", "brand"],
+  cc_number: ["card"],
+  cc_name: ["card", "holder"],
+  cc_exp: ["card", "expiry"],
+  cc_csc: ["card", "cvc"],
+  cc_cvc: ["card", "cvc"],
+  cc_type: ["card", "brand"],
+  corporate_number: ["corpnum"],
+  corporation_number: ["corpnum"],
+  company_number: ["corpnum"],
+  corp_number: ["corpnum"],
+  houjin_bangou: ["corpnum"],
+  hojin_bango: ["corpnum"],
+  hojin_no: ["corpnum"],
+  hojin_number: ["corpnum"],
+  invoice_number: ["invoice"],
+  invoice_no: ["invoice"],
+  invoice_registration: ["invoice"],
+  name_en: ["fullname", "romaji"],
+  en_name: ["fullname", "romaji"],
+  name_romaji: ["fullname", "romaji"],
+  romaji_name: ["fullname", "romaji"],
+  name_roman: ["fullname", "romaji"],
+  name_alphabet: ["fullname", "romaji"],
+  delivery_date: ["wish"],
+  delivery_day: ["wish"],
+  arrival_date: ["wish"],
+  visit_date: ["wish"],
+  reservation_date: ["wish"],
+  booking_date: ["wish"],
+  checkin_date: ["wish"],
+  desired_date: ["wish"],
+  preferred_date: ["wish"],
+  pickup_date: ["wish"],
+  use_date: ["wish"],
   postal_code: ["postal"],
   zip_code: ["postal"],
   post_code: ["postal"],
@@ -611,6 +737,42 @@ const JA_PHRASES: [string, Feature[]][] = [
   ["プライバシーポリシー", ["agree"]],
   ["個人情報", ["agree"]],
 
+  ["クレジットカード", ["card"]],
+  ["クレジット", ["card"]],
+  ["カード番号", ["card"]],
+  ["カード名義", ["card", "holder"]],
+  ["名義人", ["holder"]],
+  ["名義", ["holder"]],
+  ["有効期限(月)", ["expiry", "month"]],
+  ["有効期限(年)", ["expiry", "year"]],
+  ["有効期限", ["expiry"]],
+  ["セキュリティコード", ["cvc"]],
+  ["セキュリティーコード", ["cvc"]],
+  ["cvc", ["cvc"]],
+  ["cvv", ["cvc"]],
+  ["カード会社", ["card", "brand"]],
+  ["カードブランド", ["card", "brand"]],
+  ["ブランド", ["brand"]],
+
+  ["法人番号", ["corpnum"]],
+  ["適格請求書発行事業者登録番号", ["invoice"]],
+  ["事業者登録番号", ["invoice"]],
+  ["適格請求書", ["invoice"]],
+  ["インボイス", ["invoice"]],
+
+  ["ローマ字", ["romaji"]],
+  ["英語表記", ["romaji"]],
+  ["アルファベット", ["romaji"]],
+  ["英字", ["romaji"]],
+
+  ["希望日", ["wish"]],
+  ["予約日", ["wish"]],
+  ["お届け日", ["wish"]],
+  ["配達日", ["wish"]],
+  ["配送日", ["wish"]],
+  ["来店日", ["wish"]],
+  ["利用日", ["wish"]],
+
   ["全角", ["zenkaku"]],
   ["半角", ["hankaku"]],
 
@@ -624,6 +786,25 @@ const JA_PHRASES: [string, Feature[]][] = [
 
 /** 長い語から当てるための並び。 */
 const JA_ORDERED = [...JA_PHRASES].sort((x, y) => y[0].length - x[0].length);
+
+/**
+ * 英語の label / placeholder では読まない語。
+ *
+ * 日付や番号の書式の文字と、分割番号の語。「YYYY/MM/DD」の yyyy を年、「Choose one」の
+ * one を 1 番目と読むと、欄種がずれる。name 属性ではこれらの語に意味があるので、
+ * 語の表からは消さずに、label を読むときだけ除く。
+ */
+const LATIN_STOP = new Set([
+  "yyyy",
+  "one",
+  "two",
+  "three",
+  "upper",
+  "lower",
+  "second",
+  "area",
+  "local",
+]);
 
 /**
  * label の文字列を照合用に整える。
@@ -674,6 +855,19 @@ export function featuresOfLabel(text: string): Set<Feature> {
   if (whole === "") {
     return out;
   }
+  // ASCII だけの文字列は、部分一致ではなく語で読む。「Tell us about yourself」の
+  // tel を電話と読まないため。英語は語の切れ目に意味がある。日付の書式（YYYY/MM/DD）と
+  // 2 文字以下の語は捨てる。「MM/YY」を月と年の欄にしないため。「〒」のような記号は
+  // 日本語の表に任せる。
+  if (/^[\x20-\x7e]*$/.test(text)) {
+    const words = (
+      text
+        .normalize("NFKC")
+        .toLowerCase()
+        .match(/[a-z]+/g) ?? []
+    ).filter((w) => w.length >= 3 && !LATIN_STOP.has(w));
+    return featuresOfWords(words);
+  }
 
   const core = whole.replace(ASIDE, "");
   if (core === "名") {
@@ -705,6 +899,29 @@ export function featuresOfLabel(text: string): Set<Feature> {
       out.add(f);
     }
     rest = rest.split(phrase).join(" ");
+  }
+  return out;
+}
+
+/**
+ * placeholder の形から読む特徴。語ではなく、例そのものが何の欄かを言っている。
+ *
+ * `https://facebook.com` は URL、`taro@example.com` はメール、`@username` はハンドル名。
+ * 英語のフォーム（SNS のリンク欄など）は label に手掛かりの語が無いことが多く、
+ * 例の形だけが頼りになる。
+ *
+ * @param placeholder 欄の placeholder
+ * @returns 見つかった特徴。形が当たらなければ空
+ */
+export function featuresOfShape(placeholder: string): Set<Feature> {
+  const out = new Set<Feature>();
+  const s = placeholder.trim().normalize("NFKC");
+  if (/^https?:\/\/\S+$/i.test(s)) {
+    out.add("url");
+  } else if (/^[\w.+-]+@[\w-]+(\.[\w-]+)+$/.test(s)) {
+    out.add("email");
+  } else if (/^@\w+$/.test(s)) {
+    out.add("username");
   }
   return out;
 }
@@ -849,6 +1066,15 @@ const AUTOCOMPLETE: Record<string, FieldKind> = {
   organization: "company",
   "organization-title": "job_title",
   url: "url",
+  "cc-name": "card_holder",
+  "cc-given-name": "card_holder",
+  "cc-family-name": "card_holder",
+  "cc-number": "card_number",
+  "cc-exp": "card_expiry",
+  "cc-exp-month": "card_expiry_month",
+  "cc-exp-year": "card_expiry_year",
+  "cc-csc": "card_cvc",
+  "cc-type": "card_brand",
 };
 
 /**
@@ -973,6 +1199,17 @@ function decide(f: Features, part: number | null, field: FieldInfo): FieldKind |
     return "kana_full";
   }
 
+  // カードは住所や氏名より先。「カード名義」は氏名の語（名義）を含む。
+  if (f.has("card") || f.has("cvc") || f.has("expiry") || f.has("holder")) {
+    return decideCard(f, part);
+  }
+  if (f.has("invoice")) {
+    return "invoice_number";
+  }
+  if (f.has("corpnum")) {
+    return "corporate_number";
+  }
+
   if (f.has("fax")) {
     return "fax";
   }
@@ -1041,6 +1278,11 @@ function decide(f: Features, part: number | null, field: FieldInfo): FieldKind |
     return "address_full";
   }
 
+  // 「配達希望日」の年・月・日の分割には値を作れないので、語からは決めない。
+  if (f.has("wish")) {
+    return f.has("year") || f.has("month") || f.has("day") ? null : "date_future";
+  }
+
   if (f.has("birth")) {
     if (f.has("year") || part === 1) {
       return "birth_y";
@@ -1087,22 +1329,62 @@ function decide(f: Features, part: number | null, field: FieldInfo): FieldKind |
     return "agree";
   }
 
+  const romaji = f.has("romaji");
   if (f.has("family")) {
-    return "name_family";
+    return romaji ? "name_romaji_family" : "name_family";
   }
   if (f.has("given")) {
-    return "name_given";
+    return romaji ? "name_romaji_given" : "name_given";
   }
   if (f.has("fullname")) {
     if (part === 1) {
-      return "name_family";
+      return romaji ? "name_romaji_family" : "name_family";
     }
     if (part === 2) {
-      return "name_given";
+      return romaji ? "name_romaji_given" : "name_given";
     }
-    return "name_full";
+    return romaji ? "name_romaji" : "name_full";
   }
   return null;
+}
+
+/** カード番号を 4 桁ずつ入れる欄。`card_no1`〜`card_no4`。 */
+const CARD_PARTS: FieldKind[] = ["card_1", "card_2", "card_3", "card_4"];
+
+/**
+ * クレジットカードの欄種を決める（§2.10）。
+ *
+ * 名義 → 会社 → セキュリティコード → 有効期限 → 番号 の順。`card` の語が無くても、
+ * 「有効期限」「セキュリティコード」「名義人」だけで決める。カードの欄以外にこれらの語が
+ * 単独で出ることは少ない。
+ *
+ * @param f 見つかった特徴
+ * @param part 分割番号。番号を 4 つに分けるフォームのため
+ * @returns カードの欄種
+ */
+function decideCard(f: Features, part: number | null): FieldKind {
+  if (f.has("holder")) {
+    return "card_holder";
+  }
+  if (f.has("brand")) {
+    return "card_brand";
+  }
+  if (f.has("cvc")) {
+    return "card_cvc";
+  }
+  if (f.has("month")) {
+    return "card_expiry_month";
+  }
+  if (f.has("year")) {
+    return "card_expiry_year";
+  }
+  if (f.has("expiry")) {
+    return "card_expiry";
+  }
+  if (part !== null && part >= 1 && part <= CARD_PARTS.length) {
+    return CARD_PARTS[part - 1];
+  }
+  return "card_number";
 }
 
 /**
@@ -1132,6 +1414,18 @@ function overlay(kind: FieldKind, f: Features, part: number | null): FieldKind {
         return "city_kana";
       case "town":
         return "town_kana";
+      default:
+        break;
+    }
+  }
+  if (f.has("romaji")) {
+    switch (kind) {
+      case "name_full":
+        return "name_romaji";
+      case "name_family":
+        return "name_romaji_family";
+      case "name_given":
+        return "name_romaji_given";
       default:
         break;
     }
@@ -1194,6 +1488,9 @@ export function analyze(field: FieldInfo): Analysis {
   }
   const fromLabel = featuresOfLabel(field.label);
   const fromHint = featuresOfLabel(`${field.placeholder} ${field.ariaLabel}`);
+  for (const f of featuresOfShape(field.placeholder)) {
+    fromHint.add(f);
+  }
   const fromText = new Set<Feature>([...fromLabel, ...fromHint]);
   const fromOptions = featuresOfOptions(field.options);
   const all = new Set<Feature>([...fromTokens, ...fromText, ...fromOptions]);
@@ -1265,6 +1562,9 @@ function refine(kind: FieldKind, hint: Features, field: FieldInfo): FieldKind {
   if (kind === "kana_full" && family !== given) {
     return family ? "kana_family" : "kana_given";
   }
+  if (kind === "name_romaji" && family !== given) {
+    return family ? "name_romaji_family" : "name_romaji_given";
+  }
 
   let k = kind;
   if ((k === "town" || k === "building") && hint.has("city")) {
@@ -1312,6 +1612,7 @@ const RADIO_KINDS: ReadonlySet<FieldKind> = new Set([
   "age",
   "department",
   "job_title",
+  "card_brand",
   "agree",
   "radio",
   "skip",
@@ -1383,7 +1684,10 @@ function kindOfType(field: FieldInfo, f: Features, part: number | null): FieldKi
     case "url":
       return "url";
     case "date":
-      return "birth";
+      return f.has("wish") ? "date_future" : "birth";
+    // `type=month` はカードの有効期限にしか使われない。
+    case "month":
+      return "card_expiry";
     case "tel": {
       if (f.has("fax")) {
         return "fax";

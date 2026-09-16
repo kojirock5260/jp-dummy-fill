@@ -186,3 +186,46 @@ describe("group / a whole name next to a given name", () => {
     expect(run(["name_full", "email"])).toEqual(["name_full", "email"]);
   });
 });
+
+describe("group / card", () => {
+  it("splits four card fields into card_1..card_4", () => {
+    expect(run(["card_number", "card_number", "card_number", "card_number"])).toEqual([
+      "card_1",
+      "card_2",
+      "card_3",
+      "card_4",
+    ]);
+  });
+
+  it("does not split card fields when one takes the whole number", () => {
+    expect(
+      run([["card_number", { maxlength: 16 }], "card_number", "card_number", "card_number"]),
+    ).toEqual(["card_number", "card_number", "card_number", "card_number"]);
+  });
+
+  it("absorbs three unlabeled 4-digit boxes after a card number", () => {
+    expect(
+      run([
+        "card_number",
+        ["text", { maxlength: 4 }],
+        ["text", { maxlength: 4 }],
+        ["text", { maxlength: 4 }],
+      ]),
+    ).toEqual(["card_1", "card_2", "card_3", "card_4"]);
+  });
+
+  it("splits two expiry fields into month and year", () => {
+    expect(run(["card_expiry", "card_expiry"])).toEqual(["card_expiry_month", "card_expiry_year"]);
+  });
+});
+
+describe("group / expiry that is not a split", () => {
+  it("leaves a whole MM/YY field next to a type=month field alone", () => {
+    expect(
+      run([
+        ["card_expiry", { maxlength: 5 }],
+        ["card_expiry", { type: "month" }],
+      ]),
+    ).toEqual(["card_expiry", "card_expiry"]);
+  });
+});

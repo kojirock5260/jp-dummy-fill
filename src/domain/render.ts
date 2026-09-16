@@ -1,8 +1,8 @@
 import { analyze, type Features } from "./classify";
 import { PREFECTURES, shortPref } from "./data/addresses";
 import type { FieldInfo, FieldKind, FieldOption } from "./field";
-import { hiraToKata, kataToHira, toFullWidthDigits, toHalfWidthKana } from "./kana";
-import type { Person } from "./person";
+import { hiraToKata, JAPANESE, kataToHira, toFullWidthDigits, toHalfWidthKana } from "./kana";
+import type { Card, Person } from "./person";
 import { ERAS, toWareki } from "./wareki";
 
 /**
@@ -28,12 +28,47 @@ export type RenderContext = {
 
 export type KanaScript = "katakana" | "hiragana" | "halfwidth";
 
-/** 何にも当たらなかった text 欄に入れる短い日本語。 */
+/** 何にも当たらなかった text 欄に入れる短い日本語。label が英語だけなら英語。 */
 const SHORT_TEXT = "テスト入力";
+const SHORT_TEXT_EN = "Test input";
 
 /** 自由記述に入れる文。lorem ipsum は日本語のフォームでは浮くので使わない。 */
 const MESSAGE =
   "テスト用の入力です。フォームの動作確認のため、自動で入力しています。この内容への返信は不要です。";
+const MESSAGE_EN =
+  "This is a test entry, filled automatically to check the form. No reply is needed.";
+
+/**
+ * label / placeholder が英語だけの欄か。
+ *
+ * 日本語のサイトでも、SNS のリンク欄や管理画面は英語のままのことがある。そこに
+ * 「テスト入力」が入ると浮くので、英語の欄には英語を入れる。label が空の欄は日本語のまま。
+ *
+ * @param field 対象の欄
+ * @returns 手掛かりの文字があり、そのどれも日本語でなければ `true`
+ */
+function isEnglishField(field: FieldInfo): boolean {
+  const text = `${field.label}${field.placeholder}${field.ariaLabel}`.trim();
+  return text !== "" && !JAPANESE.test(text);
+}
+
+/**
+ * URL の欄に入れる値。placeholder が URL ならそのドメインの下にユーザー名を付ける。
+ *
+ * `https://facebook.com` と例示する欄は、そのドメインでないと弾くことがある。
+ * 例が無ければ example.jp。
+ *
+ * @param person 人物
+ * @param field 対象の欄
+ * @returns URL
+ */
+function urlFor(person: Person, field: FieldInfo): string {
+  const m = field.placeholder
+    .trim()
+    .normalize("NFKC")
+    .match(/^(https?:\/\/[^/\s?#]+)/i);
+  return m ? `${m[1]}/${person.username}` : person.url;
+}
 
 /** 選択肢の 1 行目にある「選んでください」の類。値としては選ばない。 */
 const PLACEHOLDER_OPTION = /選択|選んで|select|choose|please|---|--|▼|未設定/i;
@@ -49,6 +84,9 @@ const STRICT_SELECT: ReadonlySet<FieldKind> = new Set([
   "name_full",
   "name_family",
   "name_given",
+  "name_romaji",
+  "name_romaji_family",
+  "name_romaji_given",
   "kana_full",
   "kana_family",
   "kana_given",
@@ -80,6 +118,15 @@ const STRICT_SELECT: ReadonlySet<FieldKind> = new Set([
   "password",
   "password_confirm",
   "username",
+  "card_number",
+  "card_1",
+  "card_2",
+  "card_3",
+  "card_4",
+  "card_holder",
+  "card_cvc",
+  "corporate_number",
+  "invoice_number",
   "url",
   "birth",
   "birth_y",
@@ -418,14 +465,14 @@ function yearCandidates(person: Person, wareki: boolean): string[] {
 }
 
 /**
- * 生年月日を 1 つの text に入れる書式。placeholder に従う（§5.3）。
+ * 日付を 1 つの text に入れる書式。placeholder に従う（§5.3）。生年月日と希望日で共用。
  *
- * @param person 人物
+ * @param date 年月日
  * @param field 対象の欄
  * @returns 書式を整えた日付
  */
-function birthText(person: Person, field: FieldInfo): string {
-  const { y, m, d } = person.birth;
+function dateText(date: { y: number; m: number; d: number }, field: FieldInfo): string {
+  const { y, m, d } = date;
   const mm = String(m).padStart(2, "0");
   const dd = String(d).padStart(2, "0");
   if (field.type === "date") {
@@ -458,6 +505,121 @@ function birthText(person: Person, field: FieldInfo): string {
     .filter((p) => p !== "");
   const padded = parts.every((p) => p.length === 2);
   return padded ? `${y}${sep}${mm}${sep}${dd}` : `${y}${sep}${m}${sep}${d}`;
+}
+
+// ---------- 希望日・ローマ字・カード ----------
+
+/**
+ * 希望日。基準日の 7 日後、土日なら次の月曜。
+ *
+ * 配達希望日や来店予約の欄は「明日以降」「3 日後以降」の制限を持つことが多く、
+ * 1 週間後ならたいてい通る。土日を避けるのは定休日で弾かれないため。
+ *
+ * @param today 基準日
+ * @returns 年月日
+ */
+export function futureDate(today: Date): { y: number; m: number; d: number } {
+  const t = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);
+  if (t.getDay() === 6) {
+    t.setDate(t.getDate() + 2);
+  } else if (t.getDay() === 0) {
+    t.setDate(t.getDate() + 1);
+  }
+  return { y: t.getFullYear(), m: t.getMonth() + 1, d: t.getDate() };
+}
+
+/**
+ * ローマ字の氏名。並びと大文字小文字を欄の例に合わせる。
+ *
+ * 既定は「名 姓」を大文字で（SHOU ABE）。カードの名義がこの並びで、ローマ字欄の例も
+ * 「TARO YAMADA」が多数派。例が「YAMADA TARO」や「姓 名」なら姓を先に、
+ * 「Taro Yamada」のように小文字を含むなら頭だけ大文字にする。
+ *
+ * @param person 人物
+ * @param field 対象の欄
+ * @returns ローマ字の氏名
+ */
+export function romajiName(person: Person, field: FieldInfo): string {
+  const hint = `${field.label} ${field.placeholder} ${field.ariaLabel}`.normalize("NFKC");
+  const familyFirst =
+    /(yamada|suzuki|satou?|tanaka)\s+(tarou?|hanako|ichirou?)/i.test(hint) ||
+    /(family|last|sur)\s*name.{0,12}(given|first)\s*name|姓.{0,4}名/.test(hint);
+  const parts = familyFirst
+    ? [person.familyRomaji, person.givenRomaji]
+    : [person.givenRomaji, person.familyRomaji];
+  return parts.map((p) => romajiCase(p, field)).join(" ");
+}
+
+/**
+ * ローマ字の大文字小文字。例に小文字があれば頭だけ大文字、無ければ全部大文字。
+ *
+ * @param word 小文字のローマ字
+ * @param field 対象の欄
+ * @returns 欄の例に合わせた語
+ */
+function romajiCase(word: string, field: FieldInfo): string {
+  if (/[a-z]/.test(field.placeholder)) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+  return word.toUpperCase();
+}
+
+/**
+ * カード番号の区切り。例に「4242 4242」があれば空白、「4242-4242」ならハイフン。
+ * 例が無ければ maxlength が 19 以上のときだけ空白で区切る。16 桁ちょうどの欄には入らない。
+ *
+ * @param number 16 桁の番号
+ * @param field 対象の欄
+ * @returns 欄に合わせた番号
+ */
+function cardNumberText(number: string, field: FieldInfo): string {
+  const ph = field.placeholder.normalize("NFKC");
+  const example = ph.match(/\d{4}([ -])\d{4}/);
+  const sep = example ? example[1] : field.maxlength !== null && field.maxlength >= 19 ? " " : "";
+  return sep === "" ? number : (number.match(/.{1,4}/g) ?? [number]).join(sep);
+}
+
+/**
+ * 有効期限を 1 つの欄に。既定は MM/YY。
+ *
+ * `type=month` は YYYY-MM と決まっている。それ以外は例に従う。「MM/YYYY」「20YY」や
+ * maxlength 7 以上なら西暦 4 桁、例で年が先（YY/MM）なら年を先に。区切りは例の文字。
+ * 例が「MMYY」のように区切り無し、または maxlength が 4 なら区切り無し。
+ *
+ * @param card カード
+ * @param field 対象の欄
+ * @returns 欄に合わせた有効期限
+ */
+function cardExpiryText(card: Card, field: FieldInfo): string {
+  const mm = String(card.expMonth).padStart(2, "0");
+  const yyyy = String(card.expYear);
+  if (field.type === "month") {
+    return `${yyyy}-${mm}`;
+  }
+  const ph = field.placeholder.normalize("NFKC").toLowerCase();
+  const long = /yyyy|20\d\d/.test(ph) || (field.maxlength !== null && field.maxlength >= 7);
+  const y = long ? yyyy : yyyy.slice(2);
+  const example = ph.match(/[my\d]([/\-. ])[my\d]/);
+  const compact =
+    (/m/.test(ph) && /y/.test(ph)) || (field.maxlength !== null && field.maxlength <= 4);
+  const sep = example ? example[1] : compact ? "" : "/";
+  const yearFirst = ph.includes("y") && ph.includes("m") && ph.indexOf("y") < ph.indexOf("m");
+  return yearFirst ? `${y}${sep}${mm}` : `${mm}${sep}${y}`;
+}
+
+/**
+ * 有効期限の年の候補。maxlength が 2 か例が 2 桁なら 2 桁を先に、それ以外は 4 桁を先に。
+ *
+ * @param card カード
+ * @param field 対象の欄
+ * @returns 候補。優先順
+ */
+function cardYearCandidates(card: Card, field: FieldInfo): string[] {
+  const yyyy = String(card.expYear);
+  const yy = yyyy.slice(2);
+  const ph = field.placeholder.normalize("NFKC").toLowerCase().trim();
+  const short = field.maxlength === 2 || /^(yy|\d{2})$/.test(ph);
+  return short ? [yy, yyyy, `${yyyy}年`] : [yyyy, yy, `${yyyy}年`];
 }
 
 // ---------- 住所 ----------
@@ -586,6 +748,12 @@ function renderValue(
       return person.family;
     case "name_given":
       return person.given;
+    case "name_romaji":
+      return romajiName(person, field);
+    case "name_romaji_family":
+      return romajiCase(person.familyRomaji, field);
+    case "name_romaji_given":
+      return romajiCase(person.givenRomaji, field);
 
     case "kana_full": {
       const s = kanaScript(field);
@@ -655,8 +823,35 @@ function renderValue(
     case "username":
       return person.username;
 
+    case "card_number":
+      return cardNumberText(person.card.number, field);
+    case "card_1":
+    case "card_2":
+    case "card_3":
+    case "card_4": {
+      const n = Number(kind.slice(-1)) - 1;
+      return person.card.number.slice(n * 4, n * 4 + 4);
+    }
+    case "card_holder":
+      return romajiName(person, field);
+    case "card_expiry":
+      return cardExpiryText(person.card, field);
+    case "card_expiry_month": {
+      const m = person.card.expMonth;
+      return choose(field, [String(m).padStart(2, "0"), String(m), `${m}月`]);
+    }
+    case "card_expiry_year":
+      return choose(field, cardYearCandidates(person.card, field));
+    case "card_cvc":
+      // American Express は 4 桁。
+      return field.maxlength === 4 ? "1234" : person.card.cvc;
+    case "card_brand":
+      return field.options.length > 0
+        ? (pickOption(field.options, ["visa", "ビザ"]) ?? firstOption(field.options))
+        : "VISA";
+
     case "birth":
-      return birthText(person, field);
+      return dateText(person.birth, field);
     case "birth_y":
       return choose(field, yearCandidates(person, ctx.kinds.has("era")));
     case "birth_m":
@@ -672,6 +867,11 @@ function renderValue(
       return choose(field, [String(person.age), `${person.age}歳`]);
     case "gender":
       return choose(field, genderCandidates(person.sex));
+    case "date_future":
+      // 日付の select（「9月24日(木)」の並び）は候補を作れないので、先頭の日で済ませる。
+      return field.options.length > 0
+        ? firstOption(field.options)
+        : dateText(futureDate(ctx.today), field);
 
     case "company":
       return person.company;
@@ -683,11 +883,15 @@ function renderValue(
       return field.options.length > 0
         ? (pickOption(field.options, [person.title]) ?? firstOption(field.options))
         : person.title;
+    case "corporate_number":
+      return digitsFor(person.corporateNumber, field, f);
+    case "invoice_number":
+      return person.invoiceNumber;
     case "url":
-      return person.url;
+      return urlFor(person, field);
 
     case "message":
-      return MESSAGE;
+      return isEnglishField(field) ? MESSAGE_EN : MESSAGE;
     case "agree":
       return "on";
     case "number": {
@@ -699,7 +903,7 @@ function renderValue(
     case "radio":
       return firstOption(field.options);
     case "text":
-      return SHORT_TEXT;
+      return isEnglishField(field) ? SHORT_TEXT_EN : SHORT_TEXT;
     case "checkbox":
     case "skip":
       return null;

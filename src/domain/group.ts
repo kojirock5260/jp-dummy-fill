@@ -19,6 +19,8 @@ const SPLITS: Partial<Record<FieldKind, Partial<Record<number, FieldKind[]>>>> =
   name_full: { 2: ["name_family", "name_given"] },
   kana_full: { 2: ["kana_family", "kana_given"] },
   address_full: { 2: ["town", "building"], 3: ["city", "town", "building"] },
+  card_number: { 4: ["card_1", "card_2", "card_3", "card_4"] },
+  card_expiry: { 2: ["card_expiry_month", "card_expiry_year"] },
 };
 
 /** 電話の部分名。番号付きと番号無しが混ざった並びを埋めるのに使う。 */
@@ -115,6 +117,19 @@ function absorbByLength(fields: readonly FieldInfo[], out: FieldKind[], live: nu
       out[i] = "tel_1";
       out[next] = "tel_2";
       out[third] = "tel_3";
+      continue;
+    }
+    // カード番号も同じ。label は 1 つ目にしか付かず、4 桁の箱が 3 つ続く。
+    const fourth = live[n + 3];
+    if (
+      out[i] === "card_number" &&
+      fourth !== undefined &&
+      [next, third, fourth].every((p) => isShortText(fields[p], out[p]))
+    ) {
+      out[i] = "card_1";
+      out[next] = "card_2";
+      out[third] = "card_3";
+      out[fourth] = "card_4";
     }
   }
 }
@@ -176,7 +191,7 @@ function splitRuns(fields: readonly FieldInfo[], out: FieldKind[], live: number[
  * 並んではいるが、桁数からして分割ではないもの。
  *
  * 郵便番号の欄が 2 つ並んでいても、片方に maxlength=7 があるなら、それは全体を
- * 入れる欄。前 3 桁の欄に 7 桁は許さない。電話も同じで、3 つ並んだ欄のどれかが
+ * 入れる欄。前 3 桁の欄に 7 桁は許さない。カード番号の 4 分割も 4 桁の箱に限る。電話も同じで、3 つ並んだ欄のどれかが
  * 6 桁以上を許すなら、3 分割ではなく別々の電話番号。
  *
  * @param kind 並んでいる欄種
@@ -184,7 +199,12 @@ function splitRuns(fields: readonly FieldInfo[], out: FieldKind[], live: number[
  * @returns 分割として扱わないなら `true`
  */
 function tooLongToSplit(kind: FieldKind, fields: readonly FieldInfo[]): boolean {
-  const limit = kind === "postal" ? 5 : kind === "tel" ? 6 : null;
+  // 有効期限が 2 つ並んでも、片方が MM/YY を丸ごと受ける欄（maxlength 5 以上、type=month）なら
+  // 月・年の分割ではない。
+  if (kind === "card_expiry") {
+    return fields.some((f) => f.type === "month" || (f.maxlength !== null && f.maxlength >= 5));
+  }
+  const limit = kind === "postal" || kind === "card_number" ? 5 : kind === "tel" ? 6 : null;
   if (limit === null) {
     return false;
   }

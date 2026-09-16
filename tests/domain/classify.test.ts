@@ -959,3 +959,181 @@ describe("lessons from Amazon's address form", () => {
     ).toBe("name_full");
   });
 });
+
+const BRANDS = [
+  { value: "", text: "選択してください" },
+  { value: "visa", text: "VISA" },
+  { value: "master", text: "Mastercard" },
+  { value: "jcb", text: "JCB" },
+];
+
+describe("§2.10 決済（クレジットカード）", () => {
+  table([
+    ["name card_number", { name: "card_number" }, "card_number"],
+    ["name cardno", { name: "cardno" }, "card_number"],
+    ["name cc_number", { name: "cc_number" }, "card_number"],
+    ["autocomplete cc-number", { autocomplete: "cc-number" }, "card_number"],
+    ["label クレジットカード番号", { name: "f1", label: "クレジットカード番号" }, "card_number"],
+    ["card_no1 は 4 分割の 1 つ目", { name: "card_no1" }, "card_1"],
+    ["card_no4", { name: "card_no4" }, "card_4"],
+    ["name card_holder", { name: "card_holder" }, "card_holder"],
+    ["name holder_name", { name: "holder_name" }, "card_holder"],
+    ["autocomplete cc-name", { autocomplete: "cc-name" }, "card_holder"],
+    [
+      "label カード名義（ローマ字）",
+      { name: "f1", label: "カード名義（ローマ字）" },
+      "card_holder",
+    ],
+    ["label 名義人", { name: "f1", label: "名義人" }, "card_holder"],
+    ["name expiry", { name: "expiry" }, "card_expiry"],
+    ["name card_exp", { name: "card_exp" }, "card_expiry"],
+    ["autocomplete cc-exp", { autocomplete: "cc-exp" }, "card_expiry"],
+    ["type month", { name: "f1", type: "month" }, "card_expiry"],
+    ["label 有効期限", { name: "f1", label: "有効期限" }, "card_expiry"],
+    ["name exp_month", { name: "exp_month" }, "card_expiry_month"],
+    ["name expYear", { name: "expYear" }, "card_expiry_year"],
+    ["label 有効期限（月）", { name: "f1", label: "有効期限（月）" }, "card_expiry_month"],
+    ["label 有効期限（年）", { name: "f1", label: "有効期限（年）" }, "card_expiry_year"],
+    ["autocomplete cc-exp-month", { autocomplete: "cc-exp-month" }, "card_expiry_month"],
+    ["name cvc", { name: "cvc" }, "card_cvc"],
+    ["name security_code", { name: "security_code" }, "card_cvc"],
+    ["autocomplete cc-csc", { autocomplete: "cc-csc" }, "card_cvc"],
+    ["label セキュリティコード", { name: "f1", label: "セキュリティコード" }, "card_cvc"],
+    [
+      "select card_brand",
+      { name: "card_brand", tag: "select", type: "", options: BRANDS },
+      "card_brand",
+    ],
+    [
+      "radio カード会社",
+      { name: "f1", type: "radio", label: "カード会社", options: BRANDS },
+      "card_brand",
+    ],
+    [
+      "autocomplete cc-type",
+      { autocomplete: "cc-type", tag: "select", type: "", options: BRANDS },
+      "card_brand",
+    ],
+  ]);
+
+  it("does not take a bare cc as a card: mail forms have a CC field", () => {
+    expect(one({ name: "cc" })).toBe("text");
+    expect(one({ name: "cc", type: "email" })).toBe("email");
+  });
+});
+
+describe("§2.7 法人番号・インボイス", () => {
+  table([
+    ["name corporate_number", { name: "corporate_number" }, "corporate_number"],
+    ["name houjin_bangou", { name: "houjin_bangou" }, "corporate_number"],
+    ["label 法人番号（13桁）", { name: "f1", label: "法人番号（13桁）" }, "corporate_number"],
+    ["label 法人名 は会社名のまま", { name: "f1", label: "法人名" }, "company"],
+    ["name invoice_number", { name: "invoice_number" }, "invoice_number"],
+    [
+      "label 適格請求書発行事業者登録番号",
+      { name: "f1", label: "適格請求書発行事業者登録番号" },
+      "invoice_number",
+    ],
+    ["label インボイス登録番号", { name: "f1", label: "インボイス登録番号" }, "invoice_number"],
+  ]);
+});
+
+describe("§2.1 ローマ字", () => {
+  table([
+    ["name name_en", { name: "name_en" }, "name_romaji"],
+    ["name last_name_en", { name: "last_name_en" }, "name_romaji_family"],
+    ["name first_name_en", { name: "first_name_en" }, "name_romaji_given"],
+    ["name romaji_name", { name: "romaji_name" }, "name_romaji"],
+    ["label 氏名（ローマ字）", { name: "f1", label: "氏名（ローマ字）" }, "name_romaji"],
+    ["label 姓（英字）", { name: "f1", label: "姓（英字）" }, "name_romaji_family"],
+    [
+      "autocomplete family-name + ローマ字",
+      { autocomplete: "family-name", label: "ローマ字" },
+      "name_romaji_family",
+    ],
+    [
+      "name_romaji + placeholder 姓",
+      { name: "name_romaji", placeholder: "姓" },
+      "name_romaji_family",
+    ],
+    ["label 半角英字 だけでは何にもならない", { name: "f1", label: "半角英字" }, "text"],
+  ]);
+});
+
+describe("§2.6 希望日", () => {
+  table([
+    ["type=date + 配達希望日", { name: "f1", type: "date", label: "配達希望日" }, "date_future"],
+    ["type=date + 生年月日 はそのまま", { name: "f1", type: "date", label: "生年月日" }, "birth"],
+    ["name delivery_date", { name: "delivery_date" }, "date_future"],
+    ["label ご来店希望日", { name: "f1", label: "ご来店希望日" }, "date_future"],
+    [
+      "select 配達希望日",
+      {
+        name: "f1",
+        tag: "select",
+        type: "",
+        label: "配達希望日",
+        options: [
+          { value: "", text: "選択" },
+          { value: "2026-09-24", text: "9月24日(木)" },
+        ],
+      },
+      "date_future",
+    ],
+  ]);
+});
+
+describe("placeholder の形（§2.5 / §2.7）", () => {
+  table([
+    [
+      "@username → ユーザー名",
+      { name: "s1", label: "Instagram", placeholder: "@username" },
+      "username",
+    ],
+    [
+      "https://facebook.com → URL",
+      { name: "s2", label: "Facebook", placeholder: "https://facebook.com" },
+      "url",
+    ],
+    [
+      "you@example.com → メール",
+      { name: "s3", label: "Contact", placeholder: "you@example.com" },
+      "email",
+    ],
+    ["Nickname は語で読めるのでユーザー名", { name: "s5", label: "Nickname" }, "username"],
+    ["語に無い英語の label は text", { name: "s5", label: "Favorite color" }, "text"],
+    [
+      "メールの形でも type が勝つ",
+      { name: "s6", type: "url", placeholder: "you@example.com" },
+      "url",
+    ],
+  ]);
+});
+
+describe("英語だけの label / placeholder は語で読む", () => {
+  table([
+    ["Telephone → tel", { name: "s1", label: "Telephone" }, "tel"],
+    [
+      "Tell us about yourself は電話ではない",
+      { name: "s4", tag: "textarea", type: "", placeholder: "Tell us about yourself" },
+      "message",
+    ],
+    ["First Name → 名", { name: "s1", label: "First Name" }, "name_given"],
+    ["Last Name → 姓", { name: "s1", label: "Last Name" }, "name_family"],
+    ["Zip Code → 郵便番号", { name: "s1", label: "Zip Code" }, "postal"],
+    ["Company Name → 会社名", { name: "s1", label: "Company Name" }, "company"],
+    ["YYYY/MM/DD の例は年の欄にしない", { name: "birth", placeholder: "YYYY/MM/DD" }, "birth"],
+    ["MM/YY の例は月の欄にしない", { name: "expiry", placeholder: "MM/YY" }, "card_expiry"],
+    [
+      "Choose one は 1 番目ではない",
+      {
+        name: "s1",
+        tag: "select",
+        type: "",
+        label: "Choose one",
+        options: [{ value: "x", text: "X" }],
+      },
+      "select",
+    ],
+  ]);
+});

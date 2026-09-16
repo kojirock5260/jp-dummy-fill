@@ -56,6 +56,9 @@ export type FieldInfo = {
  * `block` `room` `country` は §2 の表に無い。Amazon の住所追加（市区町村 / 丁目・番地・号 /
  * 建物名 / 部屋番号 / 国）を見て足した。`block` は番地だけ、`room` は部屋番号だけの欄。
  *
+ * `name_romaji*` `card_*` `corporate_number` `invoice_number` `date_future` は 1.0.0 で足した
+ * （§2.1、§2.6、§2.7、§2.10）。`card_1`〜`card_4` はカード番号を 4 桁ずつ 4 つの欄に分けるフォームのため。
+ *
  * `skip` は触らない欄（§2.9）。判定の結果として返すことで、呼び出し側が
  * 「この欄には値が無い」と「触ってはいけない」を区別できる。
  */
@@ -63,6 +66,9 @@ export type FieldKind =
   | "name_full"
   | "name_family"
   | "name_given"
+  | "name_romaji"
+  | "name_romaji_family"
+  | "name_romaji_given"
   | "kana_full"
   | "kana_family"
   | "kana_given"
@@ -94,6 +100,17 @@ export type FieldKind =
   | "password"
   | "password_confirm"
   | "username"
+  | "card_number"
+  | "card_1"
+  | "card_2"
+  | "card_3"
+  | "card_4"
+  | "card_holder"
+  | "card_expiry"
+  | "card_expiry_month"
+  | "card_expiry_year"
+  | "card_cvc"
+  | "card_brand"
   | "birth"
   | "birth_y"
   | "birth_m"
@@ -101,9 +118,12 @@ export type FieldKind =
   | "era"
   | "age"
   | "gender"
+  | "date_future"
   | "company"
   | "department"
   | "job_title"
+  | "corporate_number"
+  | "invoice_number"
   | "url"
   | "message"
   | "agree"

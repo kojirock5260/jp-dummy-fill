@@ -3,7 +3,7 @@ import type { FieldKind } from "./field";
 /**
  * 「この欄にデータを埋める」のパレットに並べる欄種。
  *
- * 欄種を 6 つのまとまりに分けて見出しを付ける。並び順は日本のフォームで欄が出てくる順
+ * 欄種を 7 つのまとまりに分けて見出しを付ける。並び順は日本のフォームで欄が出てくる順
  * （氏名 → 住所 → 連絡先 → 生年月日 → 会社）。パレットは入力で絞り込めるので、
  * 見出しは探すためではなく、絞り込む前の一覧を読みやすくするためのもの。
  *
@@ -21,7 +21,17 @@ export type MenuGroup = {
 export const MENU_GROUPS: readonly MenuGroup[] = [
   {
     id: "name",
-    kinds: ["name_full", "name_family", "name_given", "kana_full", "kana_family", "kana_given"],
+    kinds: [
+      "name_full",
+      "name_family",
+      "name_given",
+      "kana_full",
+      "kana_family",
+      "kana_given",
+      "name_romaji",
+      "name_romaji_family",
+      "name_romaji_given",
+    ],
   },
   {
     id: "address",
@@ -46,11 +56,30 @@ export const MENU_GROUPS: readonly MenuGroup[] = [
   },
   {
     id: "birth",
-    kinds: ["birth", "birth_y", "birth_m", "birth_d", "era", "age", "gender"],
+    kinds: ["birth", "birth_y", "birth_m", "birth_d", "era", "age", "gender", "date_future"],
   },
   {
     id: "company",
-    kinds: ["company", "company_kana", "department", "job_title"],
+    kinds: [
+      "company",
+      "company_kana",
+      "department",
+      "job_title",
+      "corporate_number",
+      "invoice_number",
+    ],
+  },
+  {
+    id: "payment",
+    kinds: [
+      "card_number",
+      "card_holder",
+      "card_expiry",
+      "card_expiry_month",
+      "card_expiry_year",
+      "card_cvc",
+      "card_brand",
+    ],
   },
   {
     id: "other",
@@ -103,6 +132,19 @@ export const ALIASES: Record<string, readonly string[]> = {
   company_kana: ["かいしゃめい", "ふりがな", "company"],
   department: ["ぶしょ", "department"],
   job_title: ["やくしょく", "title"],
+  name_romaji: ["ろーまじ", "えいじ", "romaji", "english"],
+  name_romaji_family: ["ろーまじ", "せい", "romaji", "last"],
+  name_romaji_given: ["ろーまじ", "めい", "romaji", "first"],
+  date_future: ["きぼうび", "はいたつ", "よやく", "date"],
+  corporate_number: ["ほうじんばんごう", "corporate"],
+  invoice_number: ["いんぼいす", "とうろくばんごう", "てきかく", "invoice"],
+  card_number: ["かーど", "くれじっと", "card", "credit"],
+  card_holder: ["かーど", "めいぎ", "holder"],
+  card_expiry: ["かーど", "ゆうこうきげん", "expiry", "exp"],
+  card_expiry_month: ["かーど", "ゆうこうきげん", "つき", "month"],
+  card_expiry_year: ["かーど", "ゆうこうきげん", "ねん", "year"],
+  card_cvc: ["かーど", "せきゅりてぃこーど", "cvc", "cvv"],
+  card_brand: ["かーど", "かーどがいしゃ", "ぶらんど", "brand", "visa"],
   message: ["じゆうきじゅつ", "ほんぶん", "といあわせ", "message"],
   text: ["てきすと", "text"],
   number: ["すうち", "かず", "number"],

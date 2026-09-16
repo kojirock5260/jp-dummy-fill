@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CENTERS, ISLANDS } from "../../src/domain/data/addresses";
 import {
   ageAt,
+  checkDigit,
   generate,
   landlineOf,
   mobileOf,
@@ -55,14 +56,25 @@ describe("generate", () => {
         "block": "4-10-12",
         "building": "霞が関ビル 301",
         "buildingName": "霞が関ビル",
+        "card": {
+          "brand": "visa",
+          "cvc": "123",
+          "expMonth": 12,
+          "expYear": 2029,
+          "number": "4242424242424242",
+        },
         "company": "阿部商事株式会社",
         "companyKana": "あべしょうじ",
+        "corporateNumber": "3543075213232",
         "department": "営業部",
         "email": "shou.abe.0@example.jp",
         "family": "阿部",
         "familyKana": "あべ",
+        "familyRomaji": "abe",
         "given": "翔",
         "givenKana": "しょう",
+        "givenRomaji": "shou",
+        "invoiceNumber": "T3543075213232",
         "landline": "03-1128-3079",
         "mobile": "090-0947-6865",
         "password": "Dummy!Pass01",
@@ -219,5 +231,36 @@ describe("ageAt", () => {
 
   it("counts the birthday itself", () => {
     expect(ageAt({ y: 2000, m: 9, d: 5 }, new Date(2026, 8, 5))).toBe(26);
+  });
+});
+
+describe("corporate number and card", () => {
+  it("passes the National Tax Agency check digit", () => {
+    // 公開されている法人番号の例（トヨタ自動車 1180301018771）で検査式を確かめる。
+    expect(checkDigit("180301018771")).toBe(1);
+    for (const seed of [0, 1, 42, 357635]) {
+      const p = generate(seed, {}, TODAY);
+      expect(p.corporateNumber).toMatch(/^\d{13}$/);
+      expect(Number(p.corporateNumber[0])).toBe(checkDigit(p.corporateNumber.slice(1)));
+      expect(p.invoiceNumber).toBe(`T${p.corporateNumber}`);
+    }
+  });
+
+  it("keeps the 0.1.0 values of seed 0 in front of the new draws", () => {
+    const p = generate(0, {}, TODAY);
+    expect(p.email).toBe("shou.abe.0@example.jp");
+    expect(p.landline).toBe("03-1128-3079");
+    expect(p.familyRomaji).toBe("abe");
+    expect(p.givenRomaji).toBe("shou");
+  });
+
+  it("uses Stripe's Visa test card, expiring in December three years ahead", () => {
+    expect(generate(0, {}, TODAY).card).toEqual({
+      number: "4242424242424242",
+      brand: "visa",
+      expMonth: 12,
+      expYear: 2029,
+      cvc: "123",
+    });
   });
 });

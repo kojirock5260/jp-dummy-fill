@@ -38,6 +38,9 @@ export type Person = {
   /** ひらがな。欄の文字種に合わせて render が変換する。 */
   familyKana: string;
   givenKana: string;
+  /** ヘボン式ローマ字。小文字（「abe」「shou」）。大文字にするかは render が欄の例を見て決める */
+  familyRomaji: string;
+  givenRomaji: string;
   /** `data/addresses.json` の 1 件。郵便番号から町域までは実在。 */
   address: Address;
   /** 番地。「1-2-3」。架空 */
@@ -72,7 +75,36 @@ export type Person = {
   department: string;
   title: string;
   url: string;
+  /**
+   * 法人番号。13 桁で、先頭の 1 桁が検査用数字。国税庁の検査式を満たすので、
+   * チェックデジットを見るフォームを通る。12 桁は乱数で、特定の法人を指してはいない
+   */
+  corporateNumber: string;
+  /** 適格請求書発行事業者の登録番号。法人は `T` + 法人番号 */
+  invoiceNumber: string;
+  card: Card;
 };
+
+/**
+ * クレジットカード。決済代行のテスト用番号で、本番の決済には通らない。
+ *
+ * 4242 4242 4242 4242 は Stripe の Visa テスト番号で、Luhn を満たす。他の決済代行でも
+ * 「Luhn を満たす Visa の番号」としてテスト環境で受け付けられることが多い。
+ * 有効期限は基準日から 3 年後の 12 月。期限切れの判定に掛からず、遠すぎて弾かれもしない。
+ */
+export type Card = {
+  /** 16 桁。区切り無し */
+  number: string;
+  brand: "visa";
+  /** 1〜12 */
+  expMonth: number;
+  /** 西暦 4 桁 */
+  expYear: number;
+  cvc: string;
+};
+
+/** カード番号。Stripe の Visa テスト番号。 */
+export const CARD_NUMBER = "4242424242424242";
 
 /**
  * パスワード。大文字・小文字・数字・記号を含む 12 桁。
@@ -203,6 +235,8 @@ export function generate(
 
   const familyRomaji = toRomaji(familyKana);
   const givenRomaji = toRomaji(givenKana);
+  // 乱数はここまでの順で引く。あとに足したので、前の値は 0.1.0 のまま。
+  const corporateNumber = corporateNumberOf(r);
 
   return {
     seed,
@@ -211,6 +245,8 @@ export function generate(
     given,
     familyKana,
     givenKana,
+    familyRomaji,
+    givenRomaji,
     address,
     block,
     building,
@@ -228,7 +264,44 @@ export function generate(
     department: "営業部",
     title: "課長",
     url: "https://example.jp/",
+    corporateNumber,
+    invoiceNumber: `T${corporateNumber}`,
+    card: {
+      number: CARD_NUMBER,
+      brand: "visa",
+      expMonth: 12,
+      expYear: today.getFullYear() + 3,
+      cvc: "123",
+    },
   };
+}
+
+/**
+ * 法人番号を作る。12 桁を乱数で引き、検査用数字を頭に付ける。
+ *
+ * @param r 乱数列
+ * @returns 13 桁の法人番号
+ */
+export function corporateNumberOf(r: Random): string {
+  const body = digits(r, 12);
+  return `${checkDigit(body)}${body}`;
+}
+
+/**
+ * 法人番号の検査用数字。国税庁の定めそのまま。
+ *
+ * 12 桁を最下位から数えて n 桁目を P_n とし、n が奇数なら 1、偶数なら 2 を掛けて足す。
+ * その和を 9 で割った余りを 9 から引く。
+ *
+ * @param body 検査用数字を除いた 12 桁
+ * @returns 検査用数字（1〜9）
+ */
+export function checkDigit(body: string): number {
+  let sum = 0;
+  for (let n = 1; n <= 12; n++) {
+    sum += Number(body[12 - n]) * (n % 2 === 1 ? 1 : 2);
+  }
+  return 9 - (sum % 9);
 }
 
 /**

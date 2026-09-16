@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>決済・法人・ローマ字・希望日</title>
+<style>
+  body { font: 14px sans-serif; max-width: 640px; margin: 2em auto; }
+  h2 { font-size: 15px; margin: 1.6em 0 .4em; border-bottom: 1px solid #ccc; }
+  label { display: block; margin: .8em 0 .2em; }
+  input, select { padding: .3em; }
+  pre { background: #f4f4f4; padding: .8em; white-space: pre-wrap; }
+</style>
+<!-- 1.0.0 で足した欄種の手動確認用。docs/field-rules.md §2.1 / §2.6 / §2.7 / §2.10。 -->
+<form>
+  <h2>クレジットカード</h2>
+
+  <label>カード番号</label>
+  <input name="card_number" maxlength="16" placeholder="半角数字16桁">
+
+  <label>カード番号（4 分割）</label>
+  <input name="cardno1" maxlength="4"> - <input name="cardno2" maxlength="4"> - <input name="cardno3" maxlength="4"> - <input name="cardno4" maxlength="4">
+
+  <label>カード番号（autocomplete）</label>
+  <input name="pan" autocomplete="cc-number" placeholder="1234 5678 9012 3456">
+
+  <label>カード名義</label>
+  <input name="card_holder" placeholder="TARO YAMADA">
+
+  <label>有効期限</label>
+  <select name="exp_month">
+    <option value="">月</option>
+    <option value="01">01</option><option value="02">02</option><option value="03">03</option>
+    <option value="04">04</option><option value="05">05</option><option value="06">06</option>
+    <option value="07">07</option><option value="08">08</option><option value="09">09</option>
+    <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+  </select>
+  /
+  <select name="exp_year">
+    <option value="">年</option>
+    <option value="26">2026</option><option value="27">2027</option><option value="28">2028</option>
+    <option value="29">2029</option><option value="30">2030</option><option value="31">2031</option>
+  </select>
+
+  <label>有効期限（1 欄）</label>
+  <input name="expiry" placeholder="MM/YY" maxlength="5">
+
+  <label>有効期限（type=month）</label>
+  <input name="card_exp" type="month">
+
+  <label>セキュリティコード</label>
+  <input name="security_code" maxlength="3" inputmode="numeric">
+
+  <label>カード会社</label>
+  <label><input type="radio" name="card_brand" value="jcb"> JCB</label>
+  <label><input type="radio" name="card_brand" value="visa"> VISA</label>
+  <label><input type="radio" name="card_brand" value="master"> Mastercard</label>
+
+  <h2>法人</h2>
+
+  <label>法人名</label>
+  <input name="corp_name">
+
+  <label>法人番号</label>
+  <input name="corporate_number" maxlength="13" placeholder="半角数字13桁">
+
+  <label>適格請求書発行事業者登録番号</label>
+  <input name="invoice_number" placeholder="T1234567890123">
+
+  <h2>ローマ字</h2>
+
+  <label>氏名（ローマ字）</label>
+  <input name="last_name_en" placeholder="YAMADA"> <input name="first_name_en" placeholder="TARO">
+
+  <label>お名前（英字・氏名まとめて）</label>
+  <input name="name_romaji" placeholder="Taro Yamada">
+
+  <h2>希望日</h2>
+
+  <label>配達希望日</label>
+  <input name="delivery_date" type="date">
+
+  <label>ご来店希望日</label>
+  <input name="visit" placeholder="2026/9/1">
+
+  <label>生年月日（対照）</label>
+  <input name="birthday" type="date">
+
+  <h2>Social links</h2>
+
+  <label>Instagram</label>
+  <input name="s1" placeholder="@username">
+
+  <label>Facebook</label>
+  <input name="s2" placeholder="https://facebook.com">
+
+  <label>Contact</label>
+  <input name="s3" placeholder="you@example.com">
+
+  <label>Bio</label>
+  <textarea name="s4" placeholder="Tell us about yourself"></textarea>
+
+  <label>Favorite color</label>
+  <input name="s5">
+
+  <p><button type="button" onclick="show()">値を表示</button></p>
+  <pre id="out"></pre>
+</form>
+<script>
+  function show() {
+    const rows = [];
+    for (const el of document.querySelectorAll("input, select, textarea")) {
+      if (el.type === "radio" && !el.checked) continue;
+      if (el.type === "button") continue;
+      rows.push(`${el.name}: ${el.value}`);
+    }
+    document.getElementById("out").textContent = rows.join("\n");
+  }
+</script>
+</html>

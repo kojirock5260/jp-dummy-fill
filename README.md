@@ -72,8 +72,12 @@ Palettes filter as you type: 「さど」 → 佐渡島, 「しく」 → 市区
 | Birth date, age, gender | 1984-07-18 (昭和 59 with an era select) / 42 / 男性 |
 | Company | 阿部商事株式会社, 営業部, 課長 |
 | Free text | Two or three Japanese sentences |
+| Credit card | 4242 4242 4242 4242 (Stripe's test card) / SHOU ABE / 12/29 / 123 / VISA |
+| Corporate number, invoice | 13 digits with a valid check digit / T + 13 digits |
+| Name in Latin letters | SHOU ABE, or Shou Abe when the example is capitalized |
+| Preferred date | A weekday one week ahead |
 
-Phone numbers use unassigned ranges. `example.jp` is JPRS's reserved example domain.
+Phone numbers use unassigned ranges. `example.jp` is JPRS's reserved example domain. The card number is a test number and fails real payments.
 
 ## Layout
 

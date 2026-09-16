@@ -232,5 +232,61 @@
   "cmdPlace": {
     "message": "住所を遠隔地・離島に替える…",
     "description": "Shortcut description shown in chrome://extensions/shortcuts"
+  },
+  "group_payment": {
+    "message": "支払い",
+    "description": "Palette heading"
+  },
+  "kind_name_romaji": {
+    "message": "ローマ字氏名",
+    "description": "Palette row: field kind"
+  },
+  "kind_name_romaji_family": {
+    "message": "ローマ字（姓）",
+    "description": "Palette row: field kind"
+  },
+  "kind_name_romaji_given": {
+    "message": "ローマ字（名）",
+    "description": "Palette row: field kind"
+  },
+  "kind_date_future": {
+    "message": "希望日（1 週間後）",
+    "description": "Palette row: field kind"
+  },
+  "kind_corporate_number": {
+    "message": "法人番号",
+    "description": "Palette row: field kind"
+  },
+  "kind_invoice_number": {
+    "message": "インボイス登録番号",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_number": {
+    "message": "カード番号",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_holder": {
+    "message": "カード名義",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_expiry": {
+    "message": "有効期限（MM/YY）",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_expiry_month": {
+    "message": "有効期限（月）",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_expiry_year": {
+    "message": "有効期限（年）",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_cvc": {
+    "message": "セキュリティコード",
+    "description": "Palette row: field kind"
+  },
+  "kind_card_brand": {
+    "message": "カード会社",
+    "description": "Palette row: field kind"
   }
 }
