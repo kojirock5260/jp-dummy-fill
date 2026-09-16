@@ -3,7 +3,7 @@
   "name": "__MSG_appName__",
   "version": "1.0.0",
   "minimum_chrome_version": "114",
-  "default_locale": "en",
+  "default_locale": "ja",
   "description": "__MSG_appDesc__",
   "permissions": [
     "activeTab",
