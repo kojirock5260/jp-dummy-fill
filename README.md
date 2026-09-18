@@ -106,6 +106,7 @@ tests/fixtures/  test forms and the field structure of 8 real sites
 - Cross-origin iframes, `readonly`-input dropdowns and `div[role=radio]` cannot be filled
 - The Web Store, `chrome://` and `file://` without file access are refused; the icon shows `!`
 - `Cmd+Shift+F` is avoided because it is Fake Filler's default
+- The Edge build (`npm run pack`) defaults to `Alt+Shift+Y / U / K`, because Edge itself uses all three `Ctrl+Shift` keys
 
 ## Contributing
 

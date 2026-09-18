@@ -107,6 +107,7 @@ tests/fixtures/  試験用フォームと、実サイト 8 件の欄構造
 - 別ドメインの iframe、readonly input のドロップダウン、`div[role=radio]` には入れられない
 - ウェブストア、`chrome://`、権限 OFF の `file://` では動かない。アイコンに `!` が出る
 - `Cmd+Shift+F` を使わないのは Fake Filler の既定と重なるため
+- Edge 版（`npm run pack` で作る zip）の既定は `Alt+Shift+Y / U / K`。`Ctrl+Shift` の 3 つは Edge 本体が使っている
 
 ## Contributing
 

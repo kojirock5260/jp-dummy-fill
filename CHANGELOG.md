@@ -24,6 +24,8 @@
 ### Changed
 
 - Version 1.0.0. The rules, data and UI shipped in 0.1.0 are unchanged
+- `npm run pack` builds the store zips. The Edge zip defaults its shortcuts to `Alt+Shift+Y / U / K`,
+  since Edge uses `Ctrl+Shift+Y / U / K` itself
 
 ## 0.1.0 — 2026-09-05
 
