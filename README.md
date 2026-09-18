@@ -4,6 +4,10 @@
 
 Fill Japanese forms with dummy data that passes validation, in one click. A Chrome extension.
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/likiphcnpamhfafnnehfhnjgbonaafpb?label=Chrome%20Web%20Store&color=1a73e8)](https://chromewebstore.google.com/detail/jp-dummy-fill/likiphcnpamhfafnnehfhnjgbonaafpb)
+
+![A form after filling](docs/images/hero.png)
+
 ## Principles
 
 - **No install warnings**: only `activeTab`, `scripting` and `contextMenus`
@@ -53,6 +57,8 @@ Try it on `tests/fixtures/jp-form-test.html`.
 | Fill this field with… | Overwrites the right-clicked field with the kind you pick. The fix for a field the rules missed |
 
 Palettes filter as you type: 「さど」 → 佐渡島, 「しく」 → 市区町村.
+
+![The place palette](docs/images/palette-place.png)
 
 **Places**: Hokkaido, Kyushu, Okinawa main island and 18 islands (礼文島, 奥尻島, 飛島, 伊豆大島, 八丈島, 父島, 佐渡島, 隠岐, 小豆島, 対馬, 福江島, 屋久島, 奄美大島, 与論島, 宮古島, 石垣島, 与那国島, 南大東島), grouped the way Yamato, Sagawa and Amazon.co.jp charge shipping.
 

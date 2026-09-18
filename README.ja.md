@@ -4,6 +4,10 @@
 
 日本語のフォームに、通るダミーデータを 1 クリックで入れる Chrome 拡張。
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/likiphcnpamhfafnnehfhnjgbonaafpb?label=Chrome%20Web%20Store&color=1a73e8)](https://chromewebstore.google.com/detail/jp-dummy-fill/likiphcnpamhfafnnehfhnjgbonaafpb)
+
+![入力後のフォーム](docs/images/hero.png)
+
 ## 思想
 
 - **警告を出さない**。権限は `activeTab` / `scripting` / `contextMenus` のみ
@@ -54,6 +58,8 @@ npm run data        # 日本郵便のデータから data/addresses.json を作�
 | この欄にデータを埋める… | 右クリックした欄に、選んだ種類の値を上書きで入れる。判定が外れた欄の直し方 |
 
 パレットは数文字で絞れる。「さど」→ 佐渡島、「しく」→ 市区町村。
+
+![住所を選ぶパレット](docs/images/palette-place.png)
 
 **住所の候補**：北海道、九州、沖縄本島、離島 18（礼文島、奥尻島、飛島、伊豆大島、八丈島、父島、佐渡島、隠岐、小豆島、対馬、福江島、屋久島、奄美大島、与論島、宮古島、石垣島、与那国島、南大東島）。区分はヤマト運輸・佐川急便・Amazon.co.jp の送料区分に合わせた。
 
